@@ -5,7 +5,7 @@ import glob, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 keys = json.load(open(os.path.join(ROOT, 'i18n/keys.json'), encoding='utf8'))
-ru, problems = {}, []
+ru, problems, unseen = {}, [], 0
 # Markup must match, apart from number slots and translatable title / aria-label / alt attributes.
 tags = lambda s: sorted(re.sub(r'\{\d+\}|\{#\}', '#', re.sub(r' (title|aria-label|alt)="[^"]*"', '', t)) for t in re.findall(r'<[^>]+>', s))
 for f in sorted(glob.glob(os.path.join(ROOT, 'i18n/ru/*.tsv'))):
@@ -19,7 +19,11 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'i18n/ru/*.tsv'))):
         i, tr = parts[0], parts[1].strip()
         en = keys.get(i)
         if en is None:
-            continue  # stale: the English text has changed or gone
+            # Not seen in the last crawl: either the English changed, or it is a variant the crawl
+            # did not reach this time (a score, a random card). Keep it; unused entries are harmless.
+            ru[i] = tr
+            unseen += 1
+            continue
         if tags(en) != tags(tr):
             problems.append('%s:%d markup differs\n  EN %s\n  RU %s' % (os.path.basename(f), n, en, tr))
         slots = en.count('{#}')
@@ -33,6 +37,6 @@ with open(os.path.join(ROOT, 'js/i18n-ru.js'), 'w', encoding='utf8') as fh:
     fh.write("I18N.add('ru', ")
     json.dump(ru, fh, ensure_ascii=False, separators=(',', ':'))
     fh.write(');\n')
-print('%d translated, %d missing, %d problems' % (len(ru), len(missing), len(problems)))
+print('%d translated (%d not seen in the last crawl), %d missing, %d problems' % (len(ru), unseen, len(missing), len(problems)))
 for p in problems[:40]:
     print(p)

@@ -102,7 +102,7 @@
       const key = norm(el.innerHTML);
       if (I.lang === 'en') { note(key); return; }
       const r = lookup(key);
-      if (r != null) { el.innerHTML = r; el.__i18n = I.lang; }
+      if (r != null) { if (r !== key) el.innerHTML = r; el.__i18n = I.lang; el.__i18nHtml = el.innerHTML; }
       return;
     }
     for (const c of Array.from(el.childNodes)) walk(c);
@@ -123,7 +123,7 @@
         if (m.type === 'childList') {
           // Code may rewrite a unit that was already translated (a toggle label, a live score): translate it again.
           const u = unitOf(m.target);
-          if (u) { if (LATIN.test(u.textContent)) { u.__i18n = null; walk(u); } continue; }
+          if (u) { if (u.innerHTML !== u.__i18nHtml && LATIN.test(u.textContent)) { u.__i18n = null; walk(u); } continue; }
           m.addedNodes.forEach((n) => walk(n));
         } else if (m.type === 'attributes' && !unitOf(m.target)) doAttrs(m.target);
       }
