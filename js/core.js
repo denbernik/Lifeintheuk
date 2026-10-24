@@ -327,13 +327,14 @@
   function buildIndex() {
     index = [];
     const tr = (s) => I18N.plain(fmt(s));
-    const add = (k, title, x, r, hay) => index.push({ k: tr(k), t: tr(title), x: clip(tr(x), 120), r, hay: `${hay} ${tr(title)} ${tr(x)}`.toLowerCase() });
+    // x may be a list of separately translated parts, joined into one snippet.
+    const add = (k, title, x, r, hay) => { const xt = Array.isArray(x) ? x.map(tr).join('. ') : tr(x); index.push({ k: tr(k), t: tr(title), x: clip(xt, 120), r, hay: `${hay} ${tr(title)} ${xt}`.toLowerCase() }); };
     App.SECTIONS.forEach(({ sec, ch }) => {
       const text = sec.blocks.map((b) => [b.x, b.h, (b.items || []).map((i) => (typeof i === 'string' ? i : [i.h, i.x, i.v, i.k, i.sub, (i.items || []).join(' '), i.text].join(' '))).join(' '), (b.rows || []).flat().join(' ')].join(' ')).join(' ');
       const tText = I18N.lang === 'en' ? '' : sec.blocks.map((b) => [b.x, ...(b.items || []).filter((i) => typeof i === 'string')].filter(Boolean).map(tr).join(' ')).join(' ');
       add(`Chapter ${ch.n}`, sec.title, (sec.blocks[0] && sec.blocks[0].x) || '', sec.id, `${sec.title} ${strip(text)} ${tText}`);
     });
-    window.PEOPLE.forEach((p) => add('Person', p.n, `${p.r}. ${p.f}`, p.s, `${p.n} ${p.r} ${p.f} ${tr(p.r)} ${tr(p.f)}`));
+    window.PEOPLE.forEach((p) => add('Person', p.n, [p.r, p.f], p.s, `${p.n} ${p.r} ${p.f}`));
     window.TIMELINE.forEach((e) => add(e.d, e.t, e.x, e.s, `${e.d} ${e.t} ${e.x}`));
     App.TOOL_LINKS.forEach(([r, label]) => add('Study tool', label, '', r, label));
   }
@@ -355,7 +356,7 @@
     let sel = -1; let results = [];
     const close = () => { box.hidden = true; sel = -1; input.setAttribute('aria-expanded', 'false'); };
     const paint = () => {
-      box.innerHTML = results.length ? results.map((r, i) => `<a href="#${r.r}" class="${i === sel ? 'on' : ''}" role="option"><span class="k">${esc(r.k)}</span><span class="t">${esc(r.t)}</span>${r.x ? `<span class="x">${esc(r.x)}</span>` : ''}</a>`).join('') : `<div class="empty">No matches for “${esc(input.value)}”. Try a name, a date or a place.</div>`;
+      box.innerHTML = results.length ? results.map((r, i) => `<a href="#${r.r}" class="${i === sel ? 'on' : ''}" role="option"><span class="k">${esc(r.k)}</span><span class="t">${esc(r.t)}</span>${r.x ? `<span class="x">${esc(r.x)}</span>` : ''}</a>`).join('') : `<div class="empty"><span>No matches for</span> “<span data-noi18n>${esc(input.value)}</span>”. <span>Try a name, a date or a place.</span></div>`;
       box.hidden = false; input.setAttribute('aria-expanded', 'true');
     };
     input.addEventListener('input', () => { if (!input.value.trim()) { close(); return; } results = doSearch(input.value); sel = -1; paint(); });

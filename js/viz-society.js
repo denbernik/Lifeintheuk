@@ -262,7 +262,7 @@
     <div class="org"><b>NATO</b><span class="num">—</span><span class="badge st member">UK: member</span><span class="small muted">European and North American countries that agree to help each other if attacked, and keep peace between members.</span></div>
   </div>`, 'The handbook’s text says the Commonwealth “currently has 54 member states”, but its own updated list shows 56 (Gabon and Togo joined in 2022). The original 3rd edition says 54.');
   const CW = { Africa: ['Botswana', 'Cameroon', 'Gabon', 'The Gambia', 'Ghana', 'Kenya', 'Kingdom of Eswatini', 'Lesotho', 'Malawi', 'Mauritius', 'Mozambique', 'Namibia', 'Nigeria', 'Rwanda', 'Seychelles', 'Sierra Leone', 'South Africa', 'Togo', 'Uganda', 'United Republic of Tanzania', 'Zambia'], Asia: ['Bangladesh', 'Brunei Darussalam', 'India', 'Malaysia', 'Maldives', 'Pakistan', 'Singapore', 'Sri Lanka'], 'Caribbean and Americas': ['Antigua and Barbuda', 'The Bahamas', 'Barbados', 'Belize', 'Canada', 'Dominica', 'Grenada', 'Guyana', 'Jamaica', 'Saint Lucia', 'St Kitts and Nevis', 'St Vincent and the Grenadines', 'Trinidad and Tobago'], Europe: ['Cyprus', 'Malta', 'United Kingdom'], Pacific: ['Australia', 'Fiji', 'Kiribati', 'Nauru', 'New Zealand', 'Papua New Guinea', 'Samoa', 'Solomon Islands', 'Tonga', 'Tuvalu', 'Vanuatu'] };
-  V.commonwealth = () => `<div class="fig">${Object.entries(CW).map(([r, cs]) => `<div class="region"><h4>${r} · ${cs.length}</h4><ul class="chips">${cs.map((c) => `<li class="chip ${c === 'United Kingdom' ? 'hl' : ''}">${c}</li>`).join('')}</ul></div>`).join('')}</div>`;
+  V.commonwealth = () => `<div class="fig">${Object.entries(CW).map(([r, cs]) => `<div class="region"><h4><span>${r}</span> · ${cs.length}</h4><ul class="chips">${cs.map((c) => `<li class="chip ${c === 'United Kingdom' ? 'hl' : ''}">${c}</li>`).join('')}</ul></div>`).join('')}</div>`;
   const EU = ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'];
   const FOUNDERS = ['Belgium', 'France', 'Germany', 'Italy', 'Luxembourg', 'Netherlands'];
   V.eu = () => fig('The 27 EU member states', 'Highlighted: the six founders of 1957', `<ul class="chips" style="margin:0">${EU.map((c) => `<li class="chip ${FOUNDERS.includes(c) ? 'hl' : ''}">${c}</li>`).join('')}</ul>`);
@@ -295,7 +295,7 @@
       el.innerHTML = `<div class="q-top"><span>Case ${i + 1} of ${deck.length}</span><span>Score ${score}</span></div>
         <div class="sorter-item">${esc(it[0])}</div>
         <div class="sorter-btns"><button class="btn" style="background:var(--c3);border-color:var(--c3)" data-l="crim">Criminal law</button><button class="btn" style="background:var(--c5);border-color:var(--c5)" data-l="civil">Civil law</button></div>
-        ${last ? `<div class="feedback ${last.ok ? 'ok' : 'no'}" role="status"><b>${last.ok ? 'Right' : 'Not quite'}: “${esc(last.it[0])}” is ${last.it[1] === 'crim' ? 'criminal' : 'civil'} law.</b>${esc(last.it[2])}</div>` : ''}`;
+        ${last ? `<div class="feedback ${last.ok ? 'ok' : 'no'}" role="status"><b><span>${last.ok ? 'Right.' : 'Not quite.'}</span> <span>${esc(last.it[0])}</span>: <span>${last.it[1] === 'crim' ? 'criminal law' : 'civil law'}</span>.</b> <span>${esc(last.it[2])}</span></div>` : ''}`;
     }
     el.addEventListener('click', (e) => {
       const b = e.target.closest('[data-l]'); if (!b) return;
@@ -325,7 +325,7 @@
       const [court, who, x] = COURT[c][n];
       el.innerHTML = `<div class="court-pick"><div><p class="chips-h">Where?</p><div class="seg" role="group" aria-label="Nation">${Object.entries(NATS).map(([k, v]) => `<button data-n="${k}" aria-pressed="${k === n}">${v}</button>`).join('')}</div></div>
         <div><p class="chips-h">What kind of case?</p><div class="chips" role="group" aria-label="Case type" style="margin:0">${Object.entries(CASES).map(([k, v]) => `<button class="chip" data-c="${k}" aria-pressed="${k === c}">${v}</button>`).join('')}</div></div>
-        <div class="court-out" aria-live="polite"><span class="eyebrow">${esc(NATS[n])} · ${esc(CASES[c])}</span><div class="court">${esc(court)}</div><div class="who">${esc(who)}</div><p>${esc(x)}</p></div></div>`;
+        <div class="court-out" aria-live="polite"><span class="eyebrow"><span>${esc(NATS[n])}</span> · <span>${esc(CASES[c])}</span></span><div class="court">${esc(court)}</div><div class="who">${esc(who)}</div><p>${esc(x)}</p></div></div>`;
     }
     el.addEventListener('click', (e) => { const a = e.target.closest('[data-n]'); const b = e.target.closest('[data-c]'); if (a) n = a.dataset.n; else if (b) c = b.dataset.c; else return; paint(); });
     paint();

@@ -208,14 +208,16 @@
   App.MOUNT['game-gaps'] = function (el) {
     let qs; let qi; let score; let total; let slots; let answers; let bank; let sel; let checked;
     function round() { qs = shuffle(G.gaps).slice(0, 5); qi = 0; score = 0; total = 0; load(); }
+    // A translation can bring its own distractors after "||", so they match the grammar of the gaps.
+    const split = (g) => { const [tpl, alt] = window.t(g.x).split('||'); return { tpl: tpl.trim(), ds: alt ? alt.split('|').map((x) => x.trim()) : g.d.map((x) => window.t(x)) }; };
     function load() {
-      const g = qs[qi]; const tpl = window.t(g.x);
+      const { tpl, ds } = split(qs[qi]);
       answers = []; tpl.replace(/\{([^}]+)\}/g, (_, a) => { answers.push(a); return ''; });
-      bank = shuffle(answers.concat(g.d.map((x) => window.t(x))));
+      bank = shuffle(answers.concat(ds));
       slots = answers.map(() => null); sel = 0; checked = false; paint();
     }
     function paint() {
-      const tpl = window.t(qs[qi].x); let si = 0;
+      const { tpl } = split(qs[qi]); let si = 0;
       const parts = tpl.split(/\{[^}]+\}/);
       const sentence = parts.map((p, i) => esc(p) + (i < parts.length - 1 ? (() => { const k = si++; const v = slots[k]; const st = checked ? (v === answers[k] ? 'right' : 'wrong') : ''; return `<button class="gap ${sel === k && !checked ? 'sel' : ''} ${v != null ? 'filled' : ''} ${st}" data-s="${k}" ${checked ? 'disabled' : ''}>${v != null ? esc(bank[v]) : ' '}</button>${checked && st === 'wrong' ? `<span class="gap-fix">${esc(answers[k])}</span>` : ''}`; })() : '')).join('');
       const used = new Set(slots.filter((v) => v != null));

@@ -43,7 +43,7 @@
     }
     function paint() {
       const early = pair[0].y < pair[1].y ? 0 : 1;
-      el.innerHTML = `<div class="game-pair">${pair.map((e, i) => `<button class="game-opt ${answered !== null ? (i === early ? 'right' : (i === answered ? 'wrong' : '')) : ''}" data-w="${i}" ${answered !== null ? 'disabled' : ''}><b>${esc(e.t)}</b>${answered !== null ? `<span class="yr">${esc(e.d)}</span>` : ''}</button>${i === 0 ? '<span class="vs">or</span>' : ''}`).join('')}</div>
+      el.innerHTML = `<div class="game-pair">${pair.map((e, i) => `<button class="game-opt ${answered !== null ? (i === early ? 'right' : (i === answered ? 'wrong' : '')) : ''}" data-w="${i}" ${answered !== null ? 'disabled' : ''}><b><span>${esc(e.t)}</span></b>${answered !== null ? `<span class="yr">${esc(e.d)}</span>` : ''}</button>${i === 0 ? '<span class="vs">or</span>' : ''}`).join('')}</div>
         <div class="q-actions" style="justify-content:space-between;align-items:center"><span class="muted small">Streak <b class="mono">${streak}</b> · best <b class="mono">${best}</b></span>${answered !== null ? '<button class="btn sm" data-w="next">Next pair →</button>' : ''}</div>`;
     }
     el.addEventListener('click', (e) => {
@@ -70,7 +70,7 @@
     const out = $('.out', el);
     function paint() {
       const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-      const list = window.PEOPLE.filter((p) => (cat === 'all' || p.c === cat) && terms.every((t) => `${p.n} ${p.r} ${p.f} ${p.y || ''}`.toLowerCase().includes(t)));
+      const list = window.PEOPLE.filter((p) => (cat === 'all' || p.c === cat) && terms.every((t) => `${p.n} ${p.r} ${p.f} ${p.y || ''} ${window.t(p.n)} ${window.t(p.r)} ${window.t(p.f)}`.toLowerCase().includes(t)));
       out.innerHTML = list.length ? `<p class="muted small">${list.length} shown</p><div class="people">${list.map((p) => App.personCard(p, { link: true, flat: true })).join('')}</div>` : '<p class="muted">No one matches that filter.</p>';
       $$('[data-c]', el).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.c === cat)));
     }

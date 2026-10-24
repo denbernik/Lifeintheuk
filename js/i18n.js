@@ -109,9 +109,10 @@
   }
   I.translate = (root) => { if (I.lang !== 'en' || I.record) walk(root || document.body); };
 
-  function inTranslated(n) {
-    for (let p = n; p; p = p.parentNode) if (p.__i18n === I.lang) return true;
-    return false;
+  // The translated unit that contains n, if any.
+  function unitOf(n) {
+    for (let p = n; p; p = p.parentNode) if (p.__i18n === I.lang) return p;
+    return null;
   }
   let observer = null;
   I.observe = (root) => {
@@ -120,9 +121,11 @@
     observer = new MutationObserver((muts) => {
       for (const m of muts) {
         if (m.type === 'childList') {
-          if (inTranslated(m.target)) continue;
+          // Code may rewrite a unit that was already translated (a toggle label, a live score): translate it again.
+          const u = unitOf(m.target);
+          if (u) { if (LATIN.test(u.textContent)) { u.__i18n = null; walk(u); } continue; }
           m.addedNodes.forEach((n) => walk(n));
-        } else if (m.type === 'attributes' && !inTranslated(m.target)) doAttrs(m.target);
+        } else if (m.type === 'attributes' && !unitOf(m.target)) doAttrs(m.target);
       }
     });
     observer.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ATTRS });

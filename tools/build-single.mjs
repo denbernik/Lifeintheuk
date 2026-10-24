@@ -1,7 +1,8 @@
-// Bundle index.html, its stylesheet and scripts into one self-contained HTML file.
+// Bundle index.html, its stylesheet, scripts and photos into one self-contained HTML file.
 // Usage: node tools/build-single.mjs [out.html] [--fragment]
 //   --fragment  omit <!doctype>, <html>, <head> and <body> (for hosts that wrap the page themselves)
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+// Photos in img/ are inlined as data URIs in window.IMAGES, which App.img() prefers over img/ paths.
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'fs';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,6 +15,9 @@ let html = readFileSync(join(root, 'index.html'), 'utf8');
 html = html.replace(/<link rel="stylesheet" href="(css\/[^"]+)">/g, (_, p) => `<style>\n${readFileSync(join(root, p), 'utf8')}\n</style>`);
 html = html.replace(/<script src="(js\/[^"]+)"><\/script>/g, (_, p) => `<script>\n${readFileSync(join(root, p), 'utf8').replace(/<\/script/gi, '<\\/script')}\n</script>`);
 html = html.replace(/<!-- [a-z]+ -->\n/g, '');
+const images = Object.fromEntries(readdirSync(join(root, 'img')).filter((f) => f.endsWith('.webp'))
+  .map((f) => [f.replace(/\.webp$/, ''), `data:image/webp;base64,${readFileSync(join(root, 'img', f)).toString('base64')}`]));
+html = html.replace('<script>\n', () => `<script>window.IMAGES = ${JSON.stringify(images)};</script>\n<script>\n`);
 
 if (fragment) {
   html = html

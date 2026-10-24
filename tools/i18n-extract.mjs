@@ -73,6 +73,19 @@ await page.evaluate(() => { window.__where = 'search'; });
 for (const q of ['Magna', 'Wales', 'xyzzy']) { await page.fill('#q', q); await page.waitForTimeout(150); }
 await page.fill('#q', '');
 
+// Messages that depend on a score or outcome the crawl may not hit.
+const EXTRA = ['Exactly right! 3 points.', 'Very close! 2 points.', 'Close. 1 point.', 'Not close. 0 points.', 'Correct: 1 point.', 'Correct: 4 points.',
+  'Spot on!', 'Close!', 'Too far away.', 'Correct!', 'Not quite.', 'You tapped:', 'About 25 miles off.', 'Perfect score!', 'Well done!', 'Not bad. Try again?',
+  'Keep practising.', 'See score', 'Next', 'Best 80% · played 2', 'You have 1 unanswered question.', 'You have 3 unanswered questions.',
+  'You needed 1 more correct answer.', 'You needed 3 more correct answers.', 'Time taken: 12m 05s.', 'You scored 18 or more.', 'Pass', 'Not a pass yet',
+  'Take another mock', 'Practise by chapter', 'Stops to revise', 'Your answers', 'You said:', 'Correct:', 'No answer', 'Your recent attempts',
+  'Saved in this browser', 'Perfect.', 'Good work.', 'Try 4 more', 'Try again', 'Practise all 12 questions', 'See results', 'Who is this?',
+  'Which invention is this?', 'Which place is this?', 'Answer:', 'Not played yet', 'You know every card in this deck.', '12 cards marked as known.',
+  'Reset this deck', 'Reset known cards in this deck', 'Right.', 'criminal law', 'civil law', 'Sentence 1 of 5', 'See score', 'Next sentence', 'Check',
+  // criminal or civil sorter (viz-society.js)
+  'Carrying a knife, even for self-defence', 'Carrying a weapon of any kind is a criminal offence.', 'Buying or selling cannabis', 'Selling or buying drugs such as heroin, cocaine, ecstasy and cannabis is illegal.', 'Harassing someone because of their religion', 'Racial crime: causing harassment, alarm or distress because of religion or ethnic origin.', 'Selling cigarettes to a 16-year-old', 'Illegal to sell tobacco products to anyone under 18.', 'Smoking in an enclosed public place', 'Against the law in nearly every enclosed public place.', 'Buying alcohol for a 17-year-old', 'A criminal offence to sell alcohol to, or buy it for, under-18s.', 'Theft, assault or murder', 'Crimes that apply in most countries.', 'A landlord refusing to do repairs', 'Housing law: disputes between landlords and tenants over repairs and eviction.', 'A shop refusing to replace faulty goods', 'Consumer rights: disputes about faulty goods or services.', 'Being unfairly dismissed from work', 'Employment law: wages, unfair dismissal, workplace discrimination.', 'Someone owes you money and won’t pay', 'Debt: people may be taken to court if they owe money.', 'A dispute with your employer over wages', 'Employment law is civil law.'];
+await page.evaluate((xs) => { window.__where = 'extra'; xs.forEach((x) => window.t(x)); }, EXTRA);
+
 const data = await page.evaluate(() => {
   const { esc, fmt } = App.util;
   const out = {};

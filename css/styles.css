@@ -60,6 +60,8 @@ html:lang(ru) {
   --font-mono: 'PT Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 html:lang(ru) h1 { letter-spacing: -.02em; }
+html:lang(ru) .hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); overflow-wrap: anywhere; hyphens: auto; }
+html:lang(ru) .sec-head h1 { overflow-wrap: anywhere; hyphens: auto; }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--top-h) + 16px); }
