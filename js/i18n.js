@@ -4,7 +4,8 @@
      their whole innerHTML is the key, so sentences translate as a whole and keep their markup;
    - other text nodes and the title / aria-label / placeholder / alt attributes are translated one by one.
    Keys are FNV-1a hashes of the normalised English HTML. If no exact key exists, numbers are replaced by
-   {#} and looked up again, so "Question 3 of 24" can use one entry: "Вопрос {0} из {1}".
+   {#} and looked up again, so "Question 3 of 24" can use one entry: "Вопрос {0} из {1}"; "{0:form|forms|forms}"
+   gives the plural form that suits the number in slot 0.
    Dictionaries register themselves with I18N.add('ru', {...}). */
 (function () {
   const I = (window.I18N = { lang: 'en', dict: {}, record: null });
@@ -25,6 +26,13 @@
   I.add = (lang, entries) => { I.dict[lang] = Object.assign(I.dict[lang] || {}, entries); };
   I.hash = hash; I.norm = norm; I.escText = escText; I.tplOf = tplOf;
 
+  // {0:книга|книги|книг} picks the plural form for the number in slot 0 (one | few | many).
+  const plural = (n, forms) => {
+    const f = forms.split('|');
+    let cat = 'many';
+    try { cat = new Intl.PluralRules(I.lang).select(n); } catch (e) { /* default */ }
+    return f[{ one: 0, few: 1, many: 2, other: 2 }[cat] || 0] || f[f.length - 1];
+  };
   function lookup(key) {
     const d = I.dict[I.lang];
     if (!d) return null;
@@ -33,7 +41,7 @@
     if (/\d/.test(key)) {
       const nums = key.match(/\d+/g);
       r = d[hash(tplOf(key))];
-      if (r != null) return r.replace(/\{(\d+)\}/g, (_, i) => (nums[+i] != null ? nums[+i] : ''));
+      if (r != null) return r.replace(/\{(\d+)(?::([^}]*))?\}/g, (_, i, forms) => (forms ? plural(+nums[+i], forms) : nums[+i] != null ? nums[+i] : ''));
     }
     return null;
   }

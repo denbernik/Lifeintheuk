@@ -228,7 +228,7 @@
       <div class="role"><b>Ministers of State and Parliamentary Under-Secretaries</b><span>Take charge of areas within each department</span></div></div>
     <div class="cab-col"><h4>Opposition</h4><div class="role top"><b>Leader of the Opposition</b><span>Leads the second-largest party; usually becomes PM if it wins the next election</span></div>
       <div class="role"><b>Shadow cabinet</b><span>Senior opposition MPs (‘shadow ministers’) who challenge the government and put forward alternative policies</span></div>
-      <div class="role"><b>Prime Minister’s Questions</b><span>Every week while Parliament sits: a key chance to point out failures</span></div></div>
+      <div class="role"><b>Prime Minister’s Questions</b><span>Every week whilst Parliament sits: a key chance to point out failures</span></div></div>
   </div>`, 'The cabinet is about 20 senior MPs. It usually meets weekly; many of its decisions must be debated or approved by Parliament.');
   V.devolution = () => fig('Devolved administrations compared', 'Since 1997, some powers devolved from Westminster', `<div class="table-wrap" style="margin:0"><table><thead><tr><th></th><th>Wales</th><th>Scotland</th><th>Northern Ireland</th></tr></thead><tbody>
     <tr><td>Body</td><td>Welsh Government and National Assembly for Wales</td><td>Scottish Parliament</td><td>Northern Ireland Assembly</td></tr>

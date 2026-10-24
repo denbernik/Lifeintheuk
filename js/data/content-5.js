@@ -40,7 +40,7 @@ window.BOOK.push({
           'Meets the PM regularly and can **advise, warn and encourage**, but government decisions are made by the PM and cabinet.',
           '**Opens each new parliamentary session** with a speech summarising the government’s policies for the year. All **Acts of Parliament** are made in the monarch’s name.',
           '**Represents the UK** abroad: receives ambassadors and high commissioners, entertains visiting heads of state, makes state visits.',
-          'Provides **stability and continuity** while governments change, and a focus for national identity and pride, as seen in the Jubilee celebrations.'
+          'Provides **stability and continuity** whilst governments change, and a focus for national identity and pride, as seen in the Jubilee celebrations.'
         ] },
         { t: 'h', x: 'The national anthem' },
         { t: 'poem', title: 'God Save the King', by: 'First verse. Played at national occasions and events attended by the King or the Royal Family.', lines: ['God save our gracious King!', 'Long live our noble King!', 'God save the King!', 'Send him victorious,', 'Happy and glorious,', 'Long to reign over us,', 'God save the King!'] },
@@ -95,7 +95,7 @@ window.BOOK.push({
         { t: 'h', x: 'The opposition' },
         { t: 'list', items: [
           'The **second-largest party** in the Commons. Its leader usually becomes PM if the party wins the next election.',
-          'Points out the government’s failures and weaknesses, especially at **Prime Minister’s Questions**, every week while Parliament sits.',
+          'Points out the government’s failures and weaknesses, especially at **Prime Minister’s Questions**, every week whilst Parliament sits.',
           'The leader of the opposition appoints **shadow ministers**, who form the **shadow cabinet** to challenge the government and propose alternatives.'
         ] },
         { t: 'h', x: 'Parties and pressure groups' },
@@ -143,7 +143,7 @@ window.BOOK.push({
           'To vote in a parliamentary, local or European election you must be on the **electoral register**.',
           'Register through your **local council electoral registration office** (find yours by postcode at www.aboutmyvote.co.uk; forms in English, Welsh and other languages).',
           'The register is **updated every year in September or October**. A form goes to every household listing everyone eligible to vote.',
-          '**Northern Ireland** uses ‘**individual registration**’: everyone completes their own form, and stays registered while their details do not change.',
+          '**Northern Ireland** uses ‘**individual registration**’: everyone completes their own form, and stays registered whilst their details do not change.',
           'Local authorities must make the register **available for anyone to look at** (supervised), at electoral registration offices and some public buildings such as libraries.'
         ] },
         { t: 'h', x: 'Where and how to vote' },
@@ -319,7 +319,7 @@ window.BOOK.push({
         { t: 'chips', items: ['obey and respect the law', 'be aware of and respect the rights of others', 'treat others with fairness', 'behave responsibly', 'help and protect your family', 'respect and preserve the environment', 'treat everyone equally, regardless of sex, race, religion, age, disability, class or sexual orientation', 'work to provide for yourself and your family', 'help others', 'vote in local and national government elections'] },
         { t: 'h', x: 'Being a good neighbour' },
         { t: 'list', items: [
-          'Introduce yourself when you move in. Neighbours can help you make friends, feed pets while you are away and advise on local shops and services.',
+          'Introduce yourself when you move in. Neighbours can help you make friends, feed pets whilst you are away and advise on local shops and services.',
           'Prevent problems by respecting their **privacy**, limiting **noise**, keeping your **garden tidy**, and putting **bins** out only when they are due to be collected.'
         ] },
         { t: 'h', x: 'Ways to support your community' },

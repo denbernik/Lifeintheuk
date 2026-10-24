@@ -74,8 +74,8 @@
       $$('.land', svg).forEach((p) => { const on = m.set.includes(p.dataset.unit); p.classList.toggle('dim', !on); p.classList.toggle('hl', on && m.set.length < 4); });
       $$('[data-m]', el).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.m === mode)));
       const box = $('.map-explain', el);
-      if (m.nation) { const n = NATIONS[m.nation]; box.innerHTML = `<span class="mh">${esc(n.name)}</span>${m.nation === 'ni' ? 'Part of the UK, but <b>not</b> part of Great Britain.' : 'Part of the UK and of Great Britain.'} Capital: <b>${esc(n.capital)}</b>. Patron saint: ${esc(n.saint)} (${esc(n.saintDay)}).`; }
-      else box.innerHTML = `<span class="mh">${m.h}</span>${m.x}`;
+      if (m.nation) { const n = NATIONS[m.nation]; box.innerHTML = `<span class="mh">${esc(n.name)}</span><span>${m.nation === 'ni' ? 'Part of the UK, but <b>not</b> part of Great Britain.' : 'Part of the UK and of Great Britain.'} Capital: <b>${esc(n.capital)}</b>. Patron saint: ${esc(n.saint)} (${esc(n.saintDay)}).</span>`; }
+      else box.innerHTML = `<span class="mh">${m.h}</span><span>${m.x}</span>`;
     }
     el.addEventListener('click', (e) => { const b = e.target.closest('[data-m]'); if (b) { mode = b.dataset.m; apply(); } });
     apply();

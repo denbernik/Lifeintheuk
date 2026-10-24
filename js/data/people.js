@@ -73,7 +73,7 @@ window.PEOPLE = [
 
   // ----- 20th century -----
   { n: 'Winston Churchill', y: '1874–1965', c: 'politics', s: 'twentieth-century', r: 'Wartime Prime Minister', f: 'Conservative MP from 1900; PM from May 1940; lost in 1945, returned in 1951. Voted greatest Briton of all time in 2002.', b: true },
-  { n: 'Alexander Fleming', y: '1881–1955', c: 'science', s: 'twentieth-century', r: 'Discoverer of penicillin', f: 'Scottish doctor who discovered penicillin in 1928 while researching flu. Nobel Prize in Medicine 1945.', b: true },
+  { n: 'Alexander Fleming', y: '1881–1955', c: 'science', s: 'twentieth-century', r: 'Discoverer of penicillin', f: 'Scottish doctor who discovered penicillin in 1928 whilst researching flu. Nobel Prize in Medicine 1945.', b: true },
   { n: 'Howard Florey & Ernst Chain', c: 'science', s: 'twentieth-century', r: 'Scientists', f: 'Developed penicillin into a usable drug.' },
   { n: 'Ernest Rutherford', c: 'science', s: 'twentieth-century', r: 'Physicist', f: 'Led scientists at Manchester and Cambridge who were first to ‘split the atom’.' },
   { n: 'John Maynard Keynes', c: 'science', s: 'twentieth-century', r: 'Economist', f: 'Published influential new economic theories in the inter-war period.' },

@@ -266,7 +266,7 @@ window.BOOK.push({
         { t: 'h', x: 'The British film industry' },
         { t: 'photo', src: 'chaplin', side: true },
         { t: 'list', items: [
-          'British actors have worked in the UK and USA since the early days. **Sir Charles (Charlie) Chaplin** became famous in silent movies for his **tramp** character.',
+          'British actors have worked in the UK and USA since the early days. **Sir Charles (Charlie) Chaplin** became famous in silent films for his **tramp** character.',
           'British studios flourished in the **1930s**: directors **Sir Alexander Korda** and **Sir Alfred Hitchcock** (who later left for Hollywood and directed until his death in 1980).',
           'In the **Second World War**, films such as **In Which We Serve** boosted morale. Later, **Sir David Lean** and **Ridley Scott** found great success.',
           'The **1950s and 1960s** were a high point for comedies: **Passport to Pimlico**, **The Ladykillers** and the **Carry On** films.',

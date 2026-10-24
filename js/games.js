@@ -134,7 +134,7 @@
       const pool = items.map((_, i) => i).filter((i) => place[i] === -1);
       el.innerHTML = `${deckChips(G.sort, deck.id)}<div class="q-card"><div class="q-top"><span>${checked ? 'Wrong ones show where they belong.' : sel != null ? 'Now tap a group.' : 'Tap an item, then the group it belongs to.'}</span><span>${pool.length} left</span></div>
         <div class="sort-pool">${pool.length ? pool.map(chip).join('') : checked ? '' : '<span class="muted small">All placed. Check your answers.</span>'}</div>
-        <div class="sort-buckets" style="--n:${deck.buckets.length}">${deck.buckets.map((b, bi) => `<div class="bucket ${sel != null ? 'ready' : ''}" data-b="${bi}" role="button" tabindex="0" aria-label="Put in ${esc(b)}"><b>${esc(b)}</b><div class="bucket-items">${items.map((_, i) => i).filter((i) => place[i] === bi).map(chip).join('')}</div></div>`).join('')}</div>
+        <div class="sort-buckets" style="--n:${deck.buckets.length}">${deck.buckets.map((b, bi) => `<div class="bucket ${sel != null ? 'ready' : ''}" data-b="${bi}" role="button" tabindex="0" aria-label="${esc(b)}"><b>${esc(b)}</b><div class="bucket-items">${items.map((_, i) => i).filter((i) => place[i] === bi).map(chip).join('')}</div></div>`).join('')}</div>
         ${checked ? '' : `<div class="q-actions"><button class="btn" data-check ${pool.length ? 'disabled' : ''}>Check</button></div>`}</div>`;
       if (checked) summary(el, 'sort', items.filter((it, i) => place[i] === it[1]).length, items.length, '', round);
     }
@@ -175,7 +175,7 @@
       el.innerHTML = `${deckChips(MODES, mode.id)}<div class="q-card"><div class="q-top"><span>Question ${qi + 1} of ${qs.length}</span><span>Score ${score}</span></div>
         <p class="q-text">Where is <span class="map-target">${esc(q.n)}</span>?</p><p class="q-hint">${ans ? '' : 'Tap the map.'}</p>
         <div class="mapfig game-mapfig"><svg viewBox="0 0 ${M.w} ${M.h}" class="game-svg ${ans ? '' : 'live'}" role="img" aria-label="Map of the UK and Ireland: tap to answer"><rect class="sea" x="0" y="0" width="${M.w}" height="${M.h}" rx="10"/>${unitsSvg()}<g>${overlay}</g></svg>
-        <div class="map-side">${ans ? `<div class="feedback ${ans.pts ? 'ok' : 'no'}"><b>${ans.msg}</b>${ans.detail || ''}</div><div class="q-actions" style="justify-content:flex-start"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next' : 'See score'} →</button></div>` : '<p class="muted small">Scoring: 2 points if you are spot on, 1 if you are close.</p>'}</div></div></div>`;
+        <div class="map-side">${ans ? `<div class="feedback ${ans.pts ? 'ok' : 'no'}"><b>${ans.msg}</b> ${ans.detail || ''}</div><div class="q-actions" style="justify-content:flex-start"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next' : 'See score'} →</button></div>` : '<p class="muted small">Scoring: 2 points if you are spot on, 1 if you are close.</p>'}</div></div></div>`;
       if (ans && mode.id === 'nations') $$('.game-land', el).forEach((p) => { p.classList.toggle('hl', q.u.includes(p.dataset.unit)); p.classList.toggle('dim', !q.u.includes(p.dataset.unit)); });
     }
     el.addEventListener('click', (e) => {
@@ -190,14 +190,14 @@
       if (mode.id === 'nations') {
         const p = e.target.closest('.game-land'); if (!p) return;
         const ok = q.u.includes(p.dataset.unit);
-        ans = { pts: ok ? 2 : 0, msg: ok ? 'Correct!' : 'Not quite.', detail: ok ? '' : ` You tapped ${{ england: 'England', scotland: 'Scotland', wales: 'Wales', ni: 'Northern Ireland', ireland: 'Ireland', iom: 'the Isle of Man', jersey: 'Jersey', guernsey: 'Guernsey' }[p.dataset.unit]}.` };
+        ans = { pts: ok ? 2 : 0, msg: ok ? 'Correct!' : 'Not quite.', detail: ok ? '' : `<span>You tapped:</span> <span>${{ england: 'England', scotland: 'Scotland', wales: 'Wales', ni: 'Northern Ireland', ireland: 'Ireland', iom: 'Isle of Man', jersey: 'Jersey', guernsey: 'Guernsey' }[p.dataset.unit]}</span>` };
       } else {
         const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
         const loc = pt.matrixTransform(svg.getScreenCTM().inverse());
         const [tx, ty] = xy(q.ll); const dist = Math.hypot(loc.x - tx, loc.y - ty);
         const miles = Math.round(dist * 1.5 / 5) * 5;
         const pts = dist < 10 ? 2 : dist < 26 ? 1 : 0;
-        ans = { x: loc.x.toFixed(1), y: loc.y.toFixed(1), pts, msg: pts === 2 ? 'Spot on!' : pts === 1 ? 'Close!' : 'Too far away.', detail: ` About ${Math.max(miles, 5)} miles from ${esc(q.n)}.` };
+        ans = { x: loc.x.toFixed(1), y: loc.y.toFixed(1), pts, msg: pts === 2 ? 'Spot on!' : pts === 1 ? 'Close!' : 'Too far away.', detail: `<span>About ${Math.max(miles, 5)} miles off.</span>` };
       }
       score += ans.pts; paint();
     });
@@ -282,7 +282,7 @@
         <ol class="clues">${q[1].map((c, ci) => `<li class="${ci < shown || done ? 'on' : ''}">${ci < shown || done ? esc(c) : `Clue ${ci + 1}`}</li>`).join('')}</ol>
         ${done ? '' : `<p class="q-hint">Points if you answer now: ${5 - shown}</p>`}
         <div class="opts">${opts.map((o) => `<button class="opt ${done ? (o === q[0] ? 'right' : o === picked ? 'wrong' : '') : ''}" data-o="${esc(o)}" ${done ? 'disabled' : ''}><span>${esc(o)}</span></button>`).join('')}</div>
-        ${done ? `<div class="feedback ${ok ? 'ok' : 'no'}"><b>${ok ? `Correct: ${5 - shown} point${5 - shown === 1 ? '' : 's'}.` : `It was ${esc(q[0])}.`}</b>${person ? esc(person.f) : ''}</div>` : ''}
+        ${done ? `<div class="feedback ${ok ? 'ok' : 'no'}"><b>${ok ? `Correct: ${5 - shown} point${5 - shown === 1 ? '' : 's'}.` : `<span>Answer:</span> <span>${esc(q[0])}</span>`}</b> ${person ? `<span>${esc(person.f)}</span>` : ''}</div>` : ''}
         <div class="q-actions">${done ? `<button class="btn" data-next>${qi + 1 < qs.length ? 'Next person' : 'See score'} →</button>` : `<button class="btn ghost" data-more ${shown >= q[1].length ? 'disabled' : ''}>Show another clue</button>`}</div></div>`;
     }
     el.addEventListener('click', (e) => {
@@ -312,7 +312,7 @@
       el.innerHTML = `<div class="q-card"><div class="q-top"><span>Picture ${qi + 1} of ${qs.length}</span><span>Score ${score}</span></div>
         <div class="pic-grid"><div class="pic-frame">${App.media(q.it[0])}</div><div><p class="q-text">${esc(q.q)}</p>
         <div class="opts">${q.opts.map((o) => `<button class="opt ${done ? (o === q.it[1] ? 'right' : o === picked ? 'wrong' : '') : ''}" data-o="${esc(o)}" ${done ? 'disabled' : ''}><span>${esc(o)}</span></button>`).join('')}</div>
-        ${done ? `<div class="feedback ${ok ? 'ok' : 'no'}"><b>${ok ? 'Correct.' : `It is ${esc(q.it[1])}.`}</b>${window.PHOTOS[q.it[0]] ? esc(window.PHOTOS[q.it[0]].cap) : App.ART[q.it[0]] ? esc(App.ART[q.it[0]].who) : ''}</div><div class="q-actions"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next picture' : 'See score'} →</button></div>` : ''}</div></div></div>`;
+        ${done ? `<div class="feedback ${ok ? 'ok' : 'no'}"><b>${ok ? 'Correct.' : `<span>Answer:</span> <span>${esc(q.it[1])}</span>`}</b> <span>${window.PHOTOS[q.it[0]] ? esc(window.PHOTOS[q.it[0]].cap) : App.ART[q.it[0]] ? esc(App.ART[q.it[0]].who) : ''}</span></div><div class="q-actions"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next picture' : 'See score'} →</button></div>` : ''}</div></div></div>`;
     }
     el.addEventListener('click', (e) => {
       const o = e.target.closest('[data-o]');
@@ -331,7 +331,7 @@
       const q = qs[qi]; const done = picked != null;
       el.innerHTML = `<div class="q-card"><div class="q-top"><span>Set ${qi + 1} of ${qs.length}</span><span>Score ${score}</span></div><p class="q-text">Which is the odd one out?</p>
         <div class="odd-grid">${opts.map(([x, odd], i) => `<button class="odd-item ${done ? (odd ? 'right' : i === picked ? 'wrong' : '') : ''}" data-i="${i}" ${done ? 'disabled' : ''}>${esc(x)}</button>`).join('')}</div>
-        ${done ? `<div class="feedback ${opts[picked][1] ? 'ok' : 'no'}"><b>${opts[picked][1] ? 'Correct.' : 'Not quite.'}</b>${esc(q[2])}</div><div class="q-actions"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next set' : 'See score'} →</button></div>` : ''}</div>`;
+        ${done ? `<div class="feedback ${opts[picked][1] ? 'ok' : 'no'}"><b>${opts[picked][1] ? 'Correct.' : 'Not quite.'}</b> <span>${esc(q[2])}</span></div><div class="q-actions"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next set' : 'See score'} →</button></div>` : ''}</div>`;
     }
     el.addEventListener('click', (e) => {
       const b = e.target.closest('[data-i]');
@@ -346,7 +346,7 @@
     let qs; let qi; let score; let val; let locked;
     function round() { qs = shuffle(G.numbers).slice(0, 5); qi = 0; score = 0; load(); }
     function load() { const q = qs[qi]; val = Math.round((q[2] + (q[3] - q[2]) / 2) / q[4]) * q[4]; locked = null; paint(); }
-    const fmtN = (n) => Number(n).toLocaleString('en-GB');
+    const fmtN = (n) => Number(n).toLocaleString(App.locale());
     function paint() {
       const q = qs[qi]; const [text, ansN, min, max, step, shown, note] = q;
       const pct = (v) => ((v - min) / (max - min)) * 100;
@@ -355,7 +355,7 @@
         <div class="num-track"><input id="ng" type="range" min="${min}" max="${max}" step="${step}" value="${val}" ${locked ? 'disabled' : ''} aria-label="Your guess">${locked ? `<span class="num-ans" style="left:${pct(ansN)}%"><i>${esc(fmtN(ansN))}</i></span>` : ''}</div>
         <div class="num-ends"><span>${fmtN(min)}</span><span>${fmtN(max)}</span></div>
         ${locked ? '' : `<div class="num-step"><button class="btn sm ghost" data-d="-1" aria-label="Lower">−</button><button class="btn sm ghost" data-d="1" aria-label="Higher">+</button></div>`}</div>
-        ${locked ? `<div class="feedback ${locked.pts ? 'ok' : 'no'}"><b>${locked.pts === 3 ? 'Exactly right!' : locked.pts === 2 ? 'Very close!' : locked.pts === 1 ? 'Close.' : 'Not close.'} ${locked.pts} point${locked.pts === 1 ? '' : 's'}.</b>Answer: ${esc(shown)}. ${esc(note)}</div><div class="q-actions"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next question' : 'See score'} →</button></div>` : '<div class="q-actions"><button class="btn" data-lock>Lock in my answer</button></div>'}</div>`;
+        ${locked ? `<div class="feedback ${locked.pts ? 'ok' : 'no'}"><b>${locked.pts === 3 ? 'Exactly right!' : locked.pts === 2 ? 'Very close!' : locked.pts === 1 ? 'Close.' : 'Not close.'} ${locked.pts} point${locked.pts === 1 ? '' : 's'}.</b> <span>Answer:</span> <span>${esc(shown)}</span>. <span>${esc(note)}</span></div><div class="q-actions"><button class="btn" data-next>${qi + 1 < qs.length ? 'Next question' : 'See score'} →</button></div>` : '<div class="q-actions"><button class="btn" data-lock>Lock in my answer</button></div>'}</div>`;
     }
     el.addEventListener('input', (e) => { if (e.target.id === 'ng') { val = +e.target.value; $('.num-val', el).textContent = fmtN(val); } });
     el.addEventListener('click', (e) => {

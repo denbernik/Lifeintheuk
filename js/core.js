@@ -15,9 +15,11 @@
   const shuffle = (arr) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
-  const initials = (n) => n.replace(/^(Sir|Dame|Dr|Lord|Baroness|King|Queen|Prince|Emperor|Admiral|Captain|St)\s+/i, '').split(/\s+/).filter((w) => /^[A-Z]/.test(w)).slice(0, 2).map((w) => w[0]).join('');
+  // Monogram from the name in the current language (skipping titles), e.g. "Sir Francis Drake" -> "FD".
+  const initials = (n) => (window.t ? window.t(n) : n).replace(/^(Sir|Dame|Dr|Lord|Baroness|King|Queen|Prince|Emperor|Admiral|Captain|St|Король|Королева|Принц|Император|Адмирал|Капитан|Лорд|Баронесса|Св\.)\s+/i, '').split(/\s+/).filter((w) => /^\p{Lu}/u.test(w)).slice(0, 2).map((w) => w[0]).join('');
   const data = (o) => esc(JSON.stringify(o || {}));
   App.util = { esc, fmt, strip, shuffle, $, $$, initials, data };
+  App.locale = () => (window.I18N && I18N.lang === 'ru' ? 'ru-RU' : 'en-GB');
 
   // ---------------- icons ----------------
   const I = (d, extra) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra || ''}>${d}</svg>`;
@@ -172,7 +174,7 @@
     const qn = window.QUESTIONS.length;
     const net = App.BOOK.map((ch) => `
       <div class="netline" style="--lc:${App.chColor(ch)}">
-        <a class="netline-name" href="#${ch.id}"><span class="disc">${ch.n}</span><span>${esc(ch.short)}<small>${ch.sections.length} stop${ch.sections.length > 1 ? 's' : ''}</small></span></a>
+        <a class="netline-name" href="#${ch.id}"><span class="disc">${ch.n}</span><span><span>${esc(ch.short)}</span><small>${ch.sections.length} stop${ch.sections.length > 1 ? 's' : ''}</small></span></a>
         <div class="track ${ch.sections.length === 1 ? 'solo' : ''} ${ch.sections.length > 7 ? 'many' : ''}">${ch.sections.map((s) => `<a class="tstop ${state.studied[s.id] ? 'done' : ''}" href="#${s.id}"><span class="stn" aria-hidden="true"></span><span>${esc(s.station)}</span></a>`).join('')}</div>
       </div>`).join('');
     const toolDesc = {

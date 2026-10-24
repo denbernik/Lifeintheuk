@@ -396,7 +396,7 @@
 
     // ===== film-media =====
     { s: 'film-media', q: 'When were films first shown publicly in the UK?', o: ['1896', '1922', '1906', '1936'], a: 0, x: 'Film screenings quickly became popular.' },
-    { s: 'film-media', q: 'Charlie Chaplin became famous in silent movies for which character?', o: ['A tramp', 'A detective', 'A soldier', 'A pantomime dame'], a: 0, x: 'He made a career in Hollywood.' },
+    { s: 'film-media', q: 'Charlie Chaplin became famous in silent films for which character?', o: ['A tramp', 'A detective', 'A soldier', 'A pantomime dame'], a: 0, x: 'He made a career in Hollywood.' },
     { s: 'film-media', q: 'Which director made The 39 Steps (1935) and later worked in Hollywood?', o: ['Sir Alfred Hitchcock', 'Sir David Lean', 'Sir Alexander Korda', 'Ridley Scott'], a: 0, x: 'He remained an important director until his death in 1980.' },
     { s: 'film-media', q: 'Which TWO films did Sir David Lean direct?', o: ['Brief Encounter', 'The Third Man', 'Lawrence of Arabia', 'Chariots of Fire'], a: [0, 2], x: 'The Third Man was directed by Carol Reed; Chariots of Fire by Hugh Hudson.' },
     { s: 'film-media', q: 'Which studio claims to be the oldest continuously working film studio in the world?', o: ['Ealing Studios', 'Pinewood Studios', 'Elstree Studios', 'Shepperton Studios'], a: 0, x: 'Ealing Studios.' },
@@ -471,7 +471,7 @@
     { s: 'government', q: 'About how many senior MPs does the PM appoint to the cabinet?', o: ['About 20', 'About 5', 'About 50', 'About 100'], a: 0, x: 'The cabinet usually meets weekly.' },
     { s: 'government', q: 'Which party is the opposition?', o: ['The second-largest party in the House of Commons', 'All parties not in government', 'The largest party in the House of Lords', 'The party that came third'], a: 0, x: 'Its leader usually becomes PM if it wins the next election.' },
     { s: 'government', q: 'What do the senior opposition MPs appointed by the leader of the opposition form?', o: ['The shadow cabinet', 'The cabinet', 'The civil service', 'The Speaker’s committee'], a: 0, x: 'They challenge the government and put forward alternatives.' },
-    { s: 'government', q: 'How often does Prime Minister’s Questions take place while Parliament is sitting?', o: ['Every week', 'Every day', 'Every month', 'Once a year'], a: 0, x: 'An opportunity for the opposition to point out failures.' },
+    { s: 'government', q: 'How often does Prime Minister’s Questions take place whilst Parliament is sitting?', o: ['Every week', 'Every day', 'Every month', 'Once a year'], a: 0, x: 'An opportunity for the opposition to point out failures.' },
     { s: 'government', q: 'Which TWO are pressure or lobby groups mentioned in the handbook?', o: ['Greenpeace', 'The Labour Party', 'Liberty', 'The civil service'], a: [0, 2], x: 'Also the CBI, which represents British business.' },
     { s: 'government', q: 'Which TWO are core values of the civil service?', o: ['Impartiality', 'Loyalty to the governing party', 'Integrity', 'Secrecy'], a: [0, 2], x: 'Integrity, honesty, objectivity and impartiality (including political neutrality).' },
     { s: 'government', q: 'Is the statement below true or false? "Civil servants are political appointees."', o: TF, a: 1, x: 'They are chosen on merit and are politically neutral.' },

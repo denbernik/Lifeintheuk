@@ -33,7 +33,7 @@
   }
   function sectionLink(s) {
     const e = App.byId[s];
-    return e ? `<a href="#${s}">Revise: ${esc(e.sec.title)} →</a>` : '';
+    return e ? `<a href="#${s}"><span>Revise:</span> <span>${esc(e.sec.title)}</span> →</a>` : '';
   }
 
   // ---------------- instant mode ----------------
@@ -51,7 +51,7 @@
         <p class="q-text">${esc(it.src.q)}</p>
         <p class="q-hint">${it.multi ? 'Select TWO answers.' : 'Select one answer.'}</p>
         <div class="opts" role="group" aria-label="Answers">${optsHtml(it, it.checked)}</div>
-        ${it.checked ? `<div class="feedback ${right ? 'ok' : 'no'}" role="status"><b>${right ? 'Correct.' : 'Not quite.'}</b>${esc(it.src.x)} ${opts.showSection ? sectionLink(it.src.s) : ''}</div>` : ''}
+        ${it.checked ? `<div class="feedback ${right ? 'ok' : 'no'}" role="status"><b>${right ? 'Correct.' : 'Not quite.'}</b> <span>${esc(it.src.x)}</span> ${opts.showSection ? sectionLink(it.src.s) : ''}</div>` : ''}
         <div class="q-actions">
           ${!it.checked && it.multi ? `<button class="btn sm" data-q="check" ${it.picked.length === it.need ? '' : 'disabled'}>Check answer</button>` : ''}
           ${it.checked ? `<button class="btn sm" data-q="next">${cur + 1 < items.length ? 'Next question' : 'See results'} →</button>` : ''}
@@ -67,7 +67,7 @@
           <div class="score">${score}<span class="muted" style="font-size:.45em"> / ${items.length}</span></div>
           <div class="verdict">${score === items.length ? 'Perfect.' : score / items.length >= 0.75 ? 'Good work.' : 'Keep practising.'}</div>
         </div>
-        ${wrong.length ? `<div class="review">${wrong.map((it) => `<div class="review-item bad"><div class="q">${esc(it.src.q)}</div><div class="a">Answer: <b>${esc(it.src.o.filter((_, i) => (Array.isArray(it.src.a) ? it.src.a : [it.src.a]).includes(i)).join(' and '))}</b>. ${esc(it.src.x)} ${sectionLink(it.src.s)}</div></div>`).join('')}</div>` : ''}
+        ${wrong.length ? `<div class="review">${wrong.map((it) => `<div class="review-item bad"><div class="q">${esc(it.src.q)}</div><div class="a"><span>Answer:</span> <b>${esc(it.src.o.filter((_, i) => (Array.isArray(it.src.a) ? it.src.a : [it.src.a]).includes(i)).join(' and '))}</b>. <span>${esc(it.src.x)}</span> ${sectionLink(it.src.s)}</div></div>`).join('')}</div>` : ''}
         <div class="q-actions">${opts.again ? `<button class="btn sm ghost" data-q="again">${esc(opts.againLabel || 'Try again')}</button>` : ''}${opts.extra || ''}</div>
       </div></div>`;
     }
@@ -125,7 +125,7 @@
             ${cur + 1 < items.length ? '<button class="btn sm" data-q="nextq">Next →</button>' : ''}
             <button class="btn sm ${cur + 1 === items.length ? '' : 'ghost'}" data-q="finish">Finish test</button>
           </div>
-          ${confirming ? `<div class="feedback no" role="alert"><b>Finish now?</b>${answered < items.length ? `You have ${items.length - answered} unanswered question${items.length - answered > 1 ? 's' : ''}. ` : ''}You can’t change answers after finishing.<div class="q-actions"><button class="btn sm ghost" data-q="cancel">Keep going</button><button class="btn sm" data-q="confirm">Yes, finish</button></div></div>` : ''}
+          ${confirming ? `<div class="feedback no" role="alert"><b>Finish now?</b>${answered < items.length ? ` <span>You have ${items.length - answered} unanswered question${items.length - answered > 1 ? 's' : ''}.</span>` : ''} <span>You can’t change answers after finishing.</span><div class="q-actions"><button class="btn sm ghost" data-q="cancel">Keep going</button><button class="btn sm" data-q="confirm">Yes, finish</button></div></div>` : ''}
         </div>
       </div>`;
     }

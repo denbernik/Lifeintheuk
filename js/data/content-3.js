@@ -218,7 +218,7 @@ window.BOOK.push({
         ] },
         { t: 'h', x: 'A growing population' },
         { t: 'list', items: [
-          'Many people left to settle in America and other colonies, while others arrived.',
+          'Many people left to settle in America and other colonies, whilst others arrived.',
           'The **first Jews since the Middle Ages** settled in London in ==1656==.',
           'Between ==1680 and 1720== many **Huguenots** came from France: Protestants persecuted for their religion. Many were educated and skilled: scientists, bankers, weavers and craftspeople.'
         ] },
