@@ -8,9 +8,10 @@ window.BOOK.push({
   sections: [
     // ================= EARLY BRITAIN =================
     {
-      id: 'early-britain', station: 'Early Britain', title: 'Early Britain', era: 'Stone Age – 1066', mins: 7,
+      id: 'early-britain', station: 'Early Britain', title: 'Early Britain', era: 'Stone Age – 1066', mins: 7, hero: 'stonehenge',
       blocks: [
         { t: 'lead', x: 'Waves of people arrived in Britain over thousands of years. Each shaped the language, religion and culture that followed.' },
+        { t: 'viz', v: 'invasions' },
         { t: 'viz', v: 'invaders' },
         { t: 'h', x: 'Stone Age, Bronze Age and Iron Age' },
         { t: 'list', items: [
@@ -22,6 +23,7 @@ window.BOOK.push({
           'Iron Age people minted the **first coins in Britain**, some with the names of Iron Age kings. This marks **the beginning of British history**.'
         ] },
         { t: 'h', x: 'The Romans (AD 43–410)' },
+        { t: 'photo', src: 'hadrians-wall', side: true },
         { t: 'list', items: [
           '**Julius Caesar** led an unsuccessful invasion in ==55 BC==. Britain stayed outside the Roman Empire for nearly 100 years.',
           'In ==AD 43== **Emperor Claudius** led a successful invasion. **Boudicca**, queen of the **Iceni** (eastern England), fought the Romans; her statue is on Westminster Bridge.',
@@ -37,6 +39,7 @@ window.BOOK.push({
           'The Anglo-Saxons were not Christian at first. Missionaries from **Ireland** spread Christianity in the north (**St Patrick**, **St Columba** on Iona); **St Augustine** led missionaries from **Rome** in the south and became the **first Archbishop of Canterbury**.'
         ] },
         { t: 'h', x: 'The Vikings' },
+        { t: 'photo', src: 'vikings', side: true },
         { t: 'list', items: [
           'Vikings came from **Denmark and Norway**, first raiding in ==AD 789==, then settling in the east of England and Scotland.',
           '**Alfred the Great** united the Anglo-Saxon kingdoms and defeated the Vikings.',
@@ -45,6 +48,7 @@ window.BOOK.push({
           'In the north, the Viking threat united people under **Kenneth MacAlpin**, and the term **Scotland** began to be used.'
         ] },
         { t: 'h', x: 'The Norman Conquest (1066)' },
+        { t: 'photo', src: 'bayeux-tapestry' },
         { t: 'list', items: [
           'In ==1066== **William, Duke of Normandy**, defeated **Harold**, the Saxon king, at the **Battle of Hastings**. Harold was killed and William became **William the Conqueror**.',
           'The battle is shown in the **Bayeux Tapestry**, which can still be seen in France.',
@@ -61,7 +65,7 @@ window.BOOK.push({
 
     // ================= MIDDLE AGES =================
     {
-      id: 'middle-ages', station: 'Middle Ages', title: 'The Middle Ages', era: '1066 – 1485', mins: 8,
+      id: 'middle-ages', station: 'Middle Ages', title: 'The Middle Ages', era: '1066 – 1485', mins: 8, hero: 'conwy-castle',
       blocks: [
         { t: 'lead', x: 'The period after the Norman Conquest until about ==1485== is the **Middle Ages** (the medieval period). It was a time of almost **constant war**, but also when Parliament, the legal system and the English language took shape.' },
         { t: 'h', x: 'War at home and abroad' },
@@ -91,6 +95,7 @@ window.BOOK.push({
         ] },
         { t: 'h', x: 'A distinct identity' },
         { t: 'viz', v: 'words' },
+        { t: 'photo', src: 'windsor-castle', side: true },
         { t: 'list', items: [
           'By ==1400== official documents in England were written in English, and English was the preferred language of the royal court and Parliament.',
           '**Geoffrey Chaucer** wrote **The Canterbury Tales** in English: pilgrims travelling to Canterbury tell each other stories. It was one of the first books printed by **William Caxton**, the first person in England to print books with a printing press.',
@@ -114,6 +119,7 @@ window.BOOK.push({
         { t: 'lead', x: 'Two dynasties, one long struggle: **Protestant against Catholic**, and **king against Parliament**. By the end, Parliament had won.' },
         { t: 'viz', v: 'succession' },
         { t: 'h', x: 'Henry VII and Henry VIII' },
+        { t: 'photo', src: 'henry-viii', side: true },
         { t: 'list', items: [
           '**Henry VII** wanted peace and security: he strengthened central administration, reduced the power of the nobles and, being thrifty, built up the monarchy’s reserves.',
           '**Henry VIII** continued centralising power. He is most famous for **breaking away from the Church of Rome** and **marrying six times**.',
@@ -137,6 +143,7 @@ window.BOOK.push({
           'The Elizabethan period saw growing **patriotism**. **Sir Francis Drake**, a commander against the Armada, sailed around the world in the **Golden Hind**. English settlers first began to colonise the **east coast of America**.',
           'It is remembered for rich poetry and drama, especially **William Shakespeare**.'
         ] },
+        { t: 'gallery', items: ['elizabeth-i', 'golden-hind'] },
         { t: 'h', x: 'Scotland and Mary, Queen of Scots' },
         { t: 'list', items: [
           'In ==1560== the mainly Protestant Scottish Parliament abolished the Pope’s authority; Catholic services became illegal. A Protestant **Church of Scotland** was established but, unlike in England, it was **not a state Church**.',
@@ -162,6 +169,7 @@ window.BOOK.push({
           'Civil war began in ==1642==: **Cavaliers** (for the king) against **Roundheads** (for Parliament).'
         ] },
         { t: 'h', x: 'Oliver Cromwell and the English Republic' },
+        { t: 'photo', src: 'cromwell', side: true },
         { t: 'list', items: [
           'The king’s army was defeated at **Marston Moor** and **Naseby**. By ==1646== Parliament had won. Charles still refused to agree and was **executed in 1649**.',
           'England became a **republic** called the **Commonwealth**, with no monarch. The army was in control.',
@@ -196,7 +204,7 @@ window.BOOK.push({
 
     // ================= A GLOBAL POWER (1689-1815) =================
     {
-      id: 'global-power', station: 'Global power', title: 'A global power', era: '1689 – 1833', mins: 9,
+      id: 'global-power', station: 'Global power', title: 'A global power', era: '1689 – 1833', mins: 9, hero: 'industry',
       blocks: [
         { t: 'lead', x: 'Parliament takes control, Scotland and then Ireland join the Union, Britain industrialises first, and the slave trade is abolished.' },
         { t: 'h', x: 'Constitutional monarchy: the Bill of Rights (1689)' },
@@ -231,6 +239,7 @@ window.BOOK.push({
           'A key principle: **everyone has the right to their own political and religious beliefs** and the state should not dictate them. This is still important in the UK today.'
         ] },
         { t: 'h', x: 'The Industrial Revolution' },
+        { t: 'photo', src: 'wheat', side: true },
         { t: 'list', items: [
           'Before the 18th century, **agriculture** was the biggest employer, with many **cottage industries** (cloth and lace made at home).',
           'The **Industrial Revolution** was the rapid development of industry in the 18th and 19th centuries. **Britain was the first country to industrialise on a large scale**, using machinery and **steam power**.',
@@ -241,7 +250,10 @@ window.BOOK.push({
           'Colonies grew: **Captain James Cook** mapped Australia’s coast; Britain gained **Canada**; the **East India Company** controlled large parts of India; colonies began in southern Africa.',
           'Sugar and tobacco came from North America and the West Indies; textiles, tea and spices from India and today’s Indonesia. Trade often brought conflict with **France**.'
         ] },
+        { t: 'viz', v: 'art', o: { a: 'steam', title: 'How steam power works' } },
+        { t: 'viz', v: 'worldmap', o: { only: ['trade'], title: 'Trade and colonies in the 1700s' } },
         { t: 'h', x: 'The slave trade' },
+        { t: 'viz', v: 'worldmap', o: { only: ['slavery'], title: 'The route of the slave trade' } },
         { t: 'viz', v: 'slavery' },
         { t: 'h', x: 'Wars with America and France' },
         { t: 'list', items: [
@@ -262,7 +274,7 @@ window.BOOK.push({
 
     // ================= VICTORIAN =================
     {
-      id: 'victorian', station: 'Victorians', title: 'The Victorian Age and the Empire', era: '1832 – 1902', mins: 8,
+      id: 'victorian', station: 'Victorians', title: 'The Victorian Age and the Empire', era: '1832 – 1902', mins: 8, hero: 'victoria',
       blocks: [
         { t: 'lead', x: 'In ==1837== **Queen Victoria** became queen at **18**. She reigned until ==1901==, almost **64 years**. Britain grew in power abroad, the middle classes grew, and reformers improved life for the poor.' },
         { t: 'h', x: 'The British Empire' },
@@ -272,6 +284,7 @@ window.BOOK.push({
           { k: '120,000', v: 'Jewish refugees', x: 'Russian and Polish Jews who came 1870–1914, settling in London’s East End, Manchester and Leeds' }
         ] },
         { t: 'p', x: 'The Empire grew to cover **all of India, Australia and large parts of Africa**. People from the Empire, including India and Africa, came to Britain to live, work and study.' },
+        { t: 'viz', v: 'worldmap', o: { only: ['empire'], title: 'The British Empire at its height' } },
         { t: 'h', x: 'Trade and industry' },
         { t: 'list', items: [
           'The government promoted **free trade**. The **Corn Laws** (which prevented cheap grain imports) were repealed in ==1846==, making raw materials cheaper.',
@@ -281,6 +294,7 @@ window.BOOK.push({
           'British industry led the world: the UK produced **more than half of the world’s iron, coal and cotton cloth**, and became a centre of finance, insurance and banking.',
           'In ==1851== the **Great Exhibition** opened in **Hyde Park** in the **Crystal Palace**, a huge steel and glass building. Most of the objects were made in Britain.'
         ] },
+        { t: 'viz', v: 'art', o: { a: 'rocket', title: 'The railway engine' } },
         { t: 'h', x: 'The Crimean War (1853–1856)' },
         { t: 'list', items: [
           'Britain, with **Turkey and France**, fought **Russia**.',
@@ -319,7 +333,7 @@ window.BOOK.push({
 
     // ================= 20th CENTURY =================
     {
-      id: 'twentieth-century', station: '20th century', title: 'The 20th century: two world wars', era: '1900 – 1945', mins: 8,
+      id: 'twentieth-century', station: '20th century', title: 'The 20th century: two world wars', era: '1900 – 1945', mins: 8, hero: 'ww1',
       blocks: [
         { t: 'lead', x: 'The early 20th century was a time of optimism: Britain was a global ‘superpower’ with an expansive Empire, a well-admired navy, thriving industry and strong political institutions.' },
         { t: 'list', h: 'Social progress before the war', items: [
@@ -349,13 +363,16 @@ window.BOOK.push({
           'The **BBC** started radio broadcasts in ==1922== and the **world’s first regular television service** in ==1936==.'
         ] },
         { t: 'h', x: 'The Second World War (1939–1945)' },
+        { t: 'viz', v: 'ww2map' },
         { t: 'viz', v: 'ww2' },
+        { t: 'photo', src: 'ww2-planes' },
         { t: 'compare', items: [
           { h: 'The Allies', tone: 'c5', items: ['the UK', 'France', 'Poland', 'Australia', 'New Zealand', 'Canada', 'the Union of South Africa', 'later: the USA and the Soviet Union fought Germany too'] },
           { h: 'The Axis powers', tone: 'c3', items: ['fascist Germany', 'Italy', 'the Empire of Japan'] }
         ] },
         { t: 'h', x: 'Churchill’s speeches' },
         { t: 'viz', v: 'churchill' },
+        { t: 'viz', v: 'art', o: { a: 'penicillin', title: 'How penicillin was discovered' } },
         { t: 'events' },
         { t: 'people' }
       ],
@@ -380,6 +397,7 @@ window.BOOK.push({
           'The UK developed its own **atomic bomb** and joined **NATO**, set up to resist the perceived threat from the Soviet Union.',
           '**Conservative** government ==1951–1964==: economic recovery and rising prosperity. PM **Harold Macmillan** gave the ‘**wind of change**’ speech about decolonisation.'
         ] },
+        { t: 'viz', v: 'worldmap', o: { only: ['independence'], title: 'Independence for former colonies' } },
         { t: 'h', x: 'Migration in post-war Britain' },
         { t: 'list', items: [
           'Labour shortages: workers from **Ireland and Europe** were encouraged to help rebuild. In ==1948== people from the **West Indies** were invited to work.',
@@ -388,6 +406,7 @@ window.BOOK.push({
           'In the late 1960s new laws restricted immigration: immigrants needed a strong connection to Britain through birth or ancestry.',
           'In the early 1970s Britain admitted **28,000 people of Indian origin** forced to leave **Uganda**.'
         ] },
+        { t: 'viz', v: 'worldmap', o: { only: ['migration'], title: 'Where people came from after the war' } },
         { t: 'h', x: 'The Swinging Sixties' },
         { t: 'list', items: [
           'Growth in British fashion, cinema and pop music: **The Beatles** and **The Rolling Stones**. People became better off and bought cars and consumer goods.',

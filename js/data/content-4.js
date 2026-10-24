@@ -53,6 +53,7 @@ window.BOOK.push({
         { t: 'viz', v: 'religion' },
         { t: 'p', x: 'There are religious buildings for other religions all over the UK: Islamic **mosques**, Hindu **temples**, Jewish **synagogues**, Sikh **gurdwaras** and Buddhist **temples**.' },
         { t: 'h', x: 'Christian Churches' },
+        { t: 'photo', src: 'church' },
         { t: 'cards', cols: 2, items: [
           { h: 'England: the Church of England', sub: 'The established (state) Church', x: 'Called the **Anglican** Church in other countries and the **Episcopal** Church in Scotland and the USA. **Protestant**; has existed since the Reformation in the ==1530s==. The **monarch is its head**; the **Archbishop of Canterbury** is its spiritual leader. The monarch can select the Archbishop and senior officials, but usually the **Prime Minister** and a Church committee choose. Several bishops sit in the **House of Lords**.' },
           { h: 'Scotland: the Church of Scotland', sub: 'The national Church', x: 'A **Presbyterian** Church governed by **ministers and elders**. The chairperson of its General Assembly is the **Moderator**, appointed for **one year only**, who often speaks for the Church.' },
@@ -71,11 +72,12 @@ window.BOOK.push({
 
     // ================= CUSTOMS =================
     {
-      id: 'customs', station: 'Customs', title: 'Customs, festivals and traditions', mins: 6,
+      id: 'customs', station: 'Customs', title: 'Customs, festivals and traditions', mins: 6, hero: 'hogmanay',
       blocks: [
         { t: 'lead', x: 'A year of festivals: Christian holidays, other faiths’ celebrations, national traditions and bank holidays. Use the calendar to see when each falls.' },
         { t: 'viz', v: 'calendar' },
         { t: 'h', x: 'The main Christian festivals' },
+        { t: 'photo', src: 'easter-eggs' },
         { t: 'cards', cols: 2, items: [
           { h: 'Christmas Day', sub: '25 December · public holiday', x: 'Celebrates the birth of Jesus Christ. Many go to church on **Christmas Eve** (24 Dec) or Christmas Day. People eat **roast turkey, Christmas pudding and mince pies**, give gifts, send cards, decorate their homes and a tree. Young children believe **Father Christmas (Santa Claus)** brings presents the night before.' },
           { h: 'Boxing Day', sub: '26 December · public holiday', x: 'The day after Christmas Day.' },
@@ -110,7 +112,7 @@ window.BOOK.push({
 
     // ================= SPORT =================
     {
-      id: 'sport', station: 'Sport', title: 'Sport', mins: 7,
+      id: 'sport', station: 'Sport', title: 'Sport', mins: 7, hero: 'olympics-2012',
       blocks: [
         { t: 'lead', x: 'Many famous sports, including **cricket, football, lawn tennis, golf and rugby**, began in Britain. Major events take place at stadiums such as **Wembley** (London) and the **Millennium Stadium** (Cardiff).' },
         { t: 'viz', v: 'olympics' },
@@ -122,6 +124,7 @@ window.BOOK.push({
         { t: 'h', x: 'Notable British sportsmen and women' },
         { t: 'people' },
         { t: 'h', x: 'Sports at a glance' },
+        { t: 'photo', src: 'football' },
         { t: 'cards', cols: 2, items: [
           { h: 'Football', sub: 'The UK’s most popular sport', x: 'First professional clubs in the **late 19th century**. Separate leagues in England, Scotland, Wales and Northern Ireland; the **English Premier League** has a huge international audience. Clubs play in the **UEFA Champions League**. Each country has its own national team (FIFA World Cup, UEFA European Championships). **England’s only international tournament win was the 1966 World Cup**, hosted in the UK.' },
           { h: 'Cricket', sub: 'Originated in England', x: 'Games can last up to **five days** and still end in a draw. Said to reflect the British sense of fair play. Phrases: ‘rain stopped play’, ‘batting on a sticky wicket’, ‘playing a straight bat’, ‘bowled a googly’, ‘it’s just not cricket’. Most famous competition: **the Ashes**, England v Australia Test matches.' },
@@ -140,7 +143,7 @@ window.BOOK.push({
 
     // ================= MUSIC & THEATRE =================
     {
-      id: 'music-theatre', station: 'Music & theatre', title: 'Music and theatre', mins: 6,
+      id: 'music-theatre', station: 'Music & theatre', title: 'Music and theatre', mins: 6, hero: 'orchestra',
       blocks: [
         { t: 'lead', x: 'From Purcell to punk: music and theatre are central to British culture, with venues and festivals across the country.' },
         { t: 'h', x: 'Classical music' },
@@ -185,6 +188,7 @@ window.BOOK.push({
         { t: 'viz', v: 'artists' },
         { t: 'h', x: 'Architecture through the centuries' },
         { t: 'viz', v: 'architecture' },
+        { t: 'photo', src: 'cenotaph' },
         { t: 'h', x: 'Gardens' },
         { t: 'list', items: [
           'In the 18th century **Lancelot ‘Capability’ Brown** designed grounds so the landscape looked natural, with grass, trees and lakes. He often said a place had ‘capabilities’.',
@@ -227,7 +231,7 @@ window.BOOK.push({
 
     // ================= LEISURE =================
     {
-      id: 'leisure', station: 'Leisure', title: 'Leisure and everyday life', mins: 5,
+      id: 'leisure', station: 'Leisure', title: 'Leisure and everyday life', mins: 5, hero: 'kew-gardens',
       blocks: [
         { t: 'lead', x: 'Gardens, shopping, food, pubs and pets: how people in the UK spend their free time, and the rules that come with it.' },
         { t: 'h', x: 'Gardening' },
@@ -260,6 +264,7 @@ window.BOOK.push({
       blocks: [
         { t: 'lead', x: 'The UK has had a major influence on modern cinema. Films were first shown publicly here in ==1896==, and British film makers have been famous for **special effects** ever since.' },
         { t: 'h', x: 'The British film industry' },
+        { t: 'photo', src: 'chaplin', side: true },
         { t: 'list', items: [
           'British actors have worked in the UK and USA since the early days. **Sir Charles (Charlie) Chaplin** became famous in silent movies for his **tramp** character.',
           'British studios flourished in the **1930s**: directors **Sir Alexander Korda** and **Sir Alfred Hitchcock** (who later left for Hollywood and directed until his death in 1980).',
@@ -288,7 +293,7 @@ window.BOOK.push({
 
     // ================= PLACES =================
     {
-      id: 'places', station: 'Places', title: 'Places of interest', mins: 5,
+      id: 'places', station: 'Places', title: 'Places of interest', mins: 5, hero: 'london-eye',
       blocks: [
         { t: 'lead', x: 'A large network of **public footpaths** crosses the countryside, with mountain biking, mountaineering and hill walking. There are ==15 national parks== in England, Wales and Scotland: protected countryside everyone can visit, where people also live and work.' },
         { t: 'list', items: [
@@ -298,6 +303,7 @@ window.BOOK.push({
         ] },
         { t: 'h', x: 'UK landmarks' },
         { t: 'viz', v: 'ukmap', o: { mode: 'landmarks' } },
+        { t: 'gallery', items: ['lake-district', 'tower-bridge'] },
         { t: 'viz', v: 'parks' }
       ],
       check: ['Some of the places of interest to visit in the UK']

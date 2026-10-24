@@ -29,7 +29,7 @@ window.BOOK.push({
 
     // ================= MONARCHY =================
     {
-      id: 'monarchy', station: 'Monarchy', title: 'The monarchy', mins: 5,
+      id: 'monarchy', station: 'Monarchy', title: 'The monarchy', mins: 5, hero: 'coronation',
       blocks: [
         { t: 'lead', x: 'The UK has a **constitutional monarchy**: the King does not rule the country but **appoints the government** the people have chosen in a democratic election.' },
         { t: 'viz', v: 'royals' },
@@ -60,6 +60,7 @@ window.BOOK.push({
       blocks: [
         { t: 'lead', x: 'The UK is divided into **parliamentary constituencies**. Voters in each elect a **Member of Parliament (MP)** at a **General Election**. All the MPs form the **House of Commons**; the party with a majority forms the government. If no party has a majority, two parties can form a **coalition**.' },
         { t: 'viz', v: 'houses' },
+        { t: 'gallery', items: ['house-of-commons', 'house-of-lords'] },
         { t: 'h', x: 'The Speaker' },
         { t: 'list', items: [
           'Chairs debates in the House of Commons; the **chief officer** of the Commons.',
@@ -133,7 +134,7 @@ window.BOOK.push({
 
     // ================= VOTING =================
     {
-      id: 'voting', station: 'Voting', title: 'Who can vote, and how', mins: 5,
+      id: 'voting', station: 'Voting', title: 'Who can vote, and how', mins: 5, hero: 'polling-station',
       blocks: [
         { t: 'lead', x: 'The UK has had a **fully democratic voting system since 1928**. The present voting age of **18** was set in **1969**. With a few exceptions, all UK-born and naturalised adult citizens can vote.' },
         { t: 'viz', v: 'whovotes' },
@@ -166,10 +167,11 @@ window.BOOK.push({
 
     // ================= INTERNATIONAL =================
     {
-      id: 'international', station: 'International', title: 'The UK and international institutions', mins: 5,
+      id: 'international', station: 'International', title: 'The UK and international institutions', mins: 5, hero: 'eu-flag',
       blocks: [
         { t: 'lead', x: 'The UK belongs to several international organisations. Know what each one is for and which the UK is part of.' },
         { t: 'viz', v: 'intl' },
+        { t: 'viz', v: 'worldmap', o: { only: ['commonwealth'], title: 'The Commonwealth on the map' } },
         { t: 'h', x: 'Commonwealth member states' },
         { t: 'viz', v: 'commonwealth' },
         { t: 'h', x: 'The European Union and Brexit' },
@@ -179,6 +181,7 @@ window.BOOK.push({
           'After the Brexit vote, the UK **left the EU** at **23:00 GMT** on ==31 January 2020==. There are now **27 member states**.',
           'European laws are called **directives, regulations or framework decisions**. From ==2024==, no general principle of EU law is part of UK law.'
         ] },
+        { t: 'viz', v: 'eumap' },
         { t: 'viz', v: 'eu' }
       ],
       check: ['What the Commonwealth is and its role', 'Other international organisations of which the UK is a member']
@@ -241,7 +244,7 @@ window.BOOK.push({
 
     // ================= THE LAW =================
     {
-      id: 'law', station: 'The law', title: 'Respecting the law', mins: 6,
+      id: 'law', station: 'The law', title: 'Respecting the law', mins: 6, hero: 'police',
       blocks: [
         { t: 'lead', x: 'Knowing and obeying the law is one of the most important responsibilities of every resident. **Everyone receives equal treatment under the law.** Some things allowed in other legal systems are not acceptable in the UK.' },
         { t: 'h', x: 'Criminal law and civil law' },

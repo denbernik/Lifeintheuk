@@ -115,7 +115,7 @@
       it._g = gi[key];
     });
     let sel = -1;
-    el.innerHTML = `<div class="mapfig">${baseSvg({ aria: 'Map with numbered places' })}<div class="map-side"><ol class="poi-list">${items.map((it, i) => `<li><button data-p="${i}"><span class="n">${it._g + 1}</span><span><b>${esc(it.n)}</b>${it.g ? `<small class="muted">${esc(it.g)}</small>` : ''}<span class="d">${esc(it.d)}</span></span></button></li>`).join('')}</ol></div></div>`;
+    el.innerHTML = `<div class="mapfig">${baseSvg({ aria: 'Map with numbered places' })}<div class="map-side"><ol class="poi-list">${items.map((it, i) => `<li><button data-p="${i}"><span class="n">${it._g + 1}</span><span><b>${esc(it.n)}</b>${it.g ? `<small class="muted">${esc(it.g)}</small>` : ''}<span class="d">${it.img ? App.media(it.img) : ''}${esc(it.d)}</span></span></button></li>`).join('')}</ol></div></div>`;
     const svg = $('svg', el);
     const ov = $('.overlay', svg);
     let extra = '';

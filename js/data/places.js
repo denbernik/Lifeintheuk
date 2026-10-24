@@ -70,18 +70,18 @@
   // Points of interest grouped by layer. "g" groups pins that sit on top of each other.
   const POI = {
     landmarks: [
-      { n: 'Big Ben (Elizabeth Tower)', ll: [51.5007, -0.1246], g: 'London', d: 'Nickname for the great bell of the clock at the Houses of Parliament. The clock is over 150 years old. The tower was named Elizabeth Tower for the Diamond Jubilee in 2012.' },
-      { n: 'London Eye', ll: [51.5033, -0.1196], g: 'London', d: 'A Ferris wheel 443 feet (135 m) tall on the south bank of the Thames, built for the millennium. Part of New Year celebrations.' },
-      { n: 'Tower of London', ll: [51.508, -0.076], g: 'London', d: 'First built by William the Conqueror after 1066. Tours by the Yeoman Warders (Beefeaters). Home of the Crown Jewels.' },
-      { n: 'Eden Project', ll: [50.362, -4.745], d: 'Cornwall, south-west England. Giant greenhouse “biomes” with plants from all over the world. Also a charity running environmental and social projects.' },
-      { n: 'Edinburgh Castle', ll: [55.949, -3.200], d: 'Dominates the Edinburgh skyline. History dating back to the early Middle Ages. Looked after by Historic Scotland.' },
-      { n: 'Giant’s Causeway', ll: [55.241, -6.512], d: 'North-east coast of Northern Ireland. Columns of volcanic lava formed about 50 million years ago. Many legends about how it formed.' },
-      { n: 'Loch Lomond & the Trossachs', ll: [56.10, -4.60], d: 'National park of 720 sq miles (1,865 km²) in the west of Scotland. Loch Lomond is the largest expanse of fresh water in mainland Britain.' },
-      { n: 'Snowdonia', ll: [53.068, -4.076], d: 'National park in North Wales, 838 sq miles (2,170 km²). Snowdon is the highest mountain in Wales.' },
-      { n: 'The Lake District', ll: [54.46, -3.09], d: 'England’s largest national park, 885 sq miles (2,292 km²). Windermere is the biggest stretch of water. Wastwater was voted Britain’s favourite view in 2007.' }
+      { img: 'big-ben', n: 'Big Ben (Elizabeth Tower)', ll: [51.5007, -0.1246], g: 'London', d: 'Nickname for the great bell of the clock at the Houses of Parliament. The clock is over 150 years old. The tower was named Elizabeth Tower for the Diamond Jubilee in 2012.' },
+      { img: 'london-eye', n: 'London Eye', ll: [51.5033, -0.1196], g: 'London', d: 'A Ferris wheel 443 feet (135 m) tall on the south bank of the Thames, built for the millennium. Part of New Year celebrations.' },
+      { img: 'tower-of-london', n: 'Tower of London', ll: [51.508, -0.076], g: 'London', d: 'First built by William the Conqueror after 1066. Tours by the Yeoman Warders (Beefeaters). Home of the Crown Jewels.' },
+      { img: 'eden-project', n: 'Eden Project', ll: [50.362, -4.745], d: 'Cornwall, south-west England. Giant greenhouse “biomes” with plants from all over the world. Also a charity running environmental and social projects.' },
+      { img: 'edinburgh-castle', n: 'Edinburgh Castle', ll: [55.949, -3.200], d: 'Dominates the Edinburgh skyline. History dating back to the early Middle Ages. Looked after by Historic Scotland.' },
+      { img: 'giants-causeway', n: 'Giant’s Causeway', ll: [55.241, -6.512], d: 'North-east coast of Northern Ireland. Columns of volcanic lava formed about 50 million years ago. Many legends about how it formed.' },
+      { img: 'loch-lomond', n: 'Loch Lomond & the Trossachs', ll: [56.10, -4.60], d: 'National park of 720 sq miles (1,865 km²) in the west of Scotland. Loch Lomond is the largest expanse of fresh water in mainland Britain.' },
+      { img: 'snowdon', n: 'Snowdonia', ll: [53.068, -4.076], d: 'National park in North Wales, 838 sq miles (2,170 km²). Snowdon is the highest mountain in Wales.' },
+      { img: 'lake-district', n: 'The Lake District', ll: [54.46, -3.09], d: 'England’s largest national park, 885 sq miles (2,292 km²). Windermere is the biggest stretch of water. Wastwater was voted Britain’s favourite view in 2007.' }
     ],
     gardens: [
-      { n: 'Kew Gardens', ll: [51.478, -0.296], d: 'England' },
+      { img: 'kew-gardens', n: 'Kew Gardens', ll: [51.478, -0.296], d: 'England' },
       { n: 'Sissinghurst', ll: [51.115, 0.585], d: 'England' },
       { n: 'Hidcote', ll: [52.083, -1.745], d: 'England' },
       { n: 'Crathes Castle', ll: [57.058, -2.441], d: 'Scotland' },
@@ -103,23 +103,23 @@
       { n: 'Stoke Mandeville', ll: [51.790, -0.788], d: 'Origin of the Paralympics: Dr Sir Ludwig Guttman’s work, Buckinghamshire' }
     ],
     early: [
-      { n: 'Stonehenge', ll: [51.179, -1.826], d: 'Stone Age monument in Wiltshire; probably a gathering place for seasonal ceremonies' },
+      { img: 'stonehenge', n: 'Stonehenge', ll: [51.179, -1.826], d: 'Stone Age monument in Wiltshire; probably a gathering place for seasonal ceremonies' },
       { n: 'Skara Brae', ll: [59.049, -3.343], d: 'Orkney: best-preserved prehistoric village in northern Europe' },
       { n: 'Maiden Castle', ll: [50.695, -2.469], d: 'Iron Age hill fort in Dorset' },
-      { n: 'Hadrian’s Wall', ll: [55.013, -2.331], d: 'Built to keep out the Picts. Forts at Housesteads and Vindolanda. UNESCO World Heritage Site' },
+      { img: 'hadrians-wall', n: 'Hadrian’s Wall', ll: [55.013, -2.331], d: 'Built to keep out the Picts. Forts at Housesteads and Vindolanda. UNESCO World Heritage Site' },
       { n: 'Sutton Hoo', ll: [52.089, 1.338], d: 'Suffolk: burial of an Anglo-Saxon king in a ship with treasure and armour' },
       { n: 'Iona', ll: [56.334, -6.392], d: 'St Columba founded a monastery here' },
       { n: 'Canterbury', ll: [51.280, 1.080], d: 'St Augustine became the first Archbishop of Canterbury' },
       { n: 'Grimsby & Scunthorpe', ll: [53.567, -0.300], d: 'In the Danelaw: place names from Viking languages' },
-      { n: 'Hastings', ll: [50.912, 0.487], d: '1066: William of Normandy defeats Harold' }
+      { img: 'bayeux-tapestry', n: 'Hastings', ll: [50.912, 0.487], d: '1066: William of Normandy defeats Harold' }
     ],
     middle: [
-      { n: 'Conwy Castle', ll: [53.280, -3.826], d: 'Built by Edward I to hold Wales' },
+      { img: 'conwy-castle', n: 'Conwy Castle', ll: [53.280, -3.826], d: 'Built by Edward I to hold Wales' },
       { n: 'Caernarvon Castle', ll: [53.139, -4.277], d: 'Built by Edward I to hold Wales' },
       { n: 'Bannockburn', ll: [56.093, -3.920], d: '1314: Robert the Bruce defeats the English' },
       { n: 'The Pale (Dublin)', ll: [53.350, -6.260], d: 'By 1200 the English ruled this area around Dublin' },
-      { n: 'Windsor Castle', ll: [51.483, -0.604], d: 'Medieval castle still in use' },
-      { n: 'Edinburgh Castle', ll: [55.949, -3.200], d: 'Medieval castle still in use' },
+      { img: 'windsor-castle', n: 'Windsor Castle', ll: [51.483, -0.604], d: 'Medieval castle still in use' },
+      { img: 'edinburgh-castle', n: 'Edinburgh Castle', ll: [55.949, -3.200], d: 'Medieval castle still in use' },
       { n: 'Lincoln Cathedral', ll: [53.234, -0.536], d: 'Great medieval cathedral' },
       { n: 'York Minster', ll: [53.962, -1.082], d: 'Famous medieval stained glass' },
       { n: 'Canterbury', ll: [51.280, 1.080], d: 'Destination of Chaucer’s pilgrims' },

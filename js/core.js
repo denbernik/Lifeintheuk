@@ -34,6 +34,7 @@
     cards: I('<rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/>'),
     practice: I('<circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/>'),
     mock: I('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>'),
+    games: I('<rect x="3" y="7" width="18" height="11" rx="5"/><path d="M8 10v5M5.5 12.5h5"/><circle cx="15.5" cy="11.5" r="1"/><circle cx="17.5" cy="14" r="1"/>'),
     map: I('<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>'),
     arrowR: I('<path d="M5 12h14M13 6l6 6-6 6"/>'),
     check: I('<path d="m5 12 5 5 9-10"/>')
@@ -55,7 +56,7 @@
 
   // ---------------- store ----------------
   const KEY = 'liuk-study-v1';
-  let state = { studied: {}, checks: {}, quiz: {}, cards: {}, mocks: [], theme: 'system' };
+  let state = { studied: {}, checks: {}, quiz: {}, cards: {}, mocks: [], theme: 'system', lang: 'en' };
   try { const raw = localStorage.getItem(KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch (e) { /* storage unavailable */ }
   App.store = {
     get: () => state,
@@ -80,7 +81,7 @@
   // ---------------- sidebar ----------------
   const TOOL_LINKS = [
     ['timeline', 'Timeline', 'timeline'], ['people', 'Who’s who', 'people'], ['numbers', 'Numbers & ages', 'numbers'],
-    ['keyfacts', 'Key facts sheet', 'sheet'], ['flashcards', 'Flashcards', 'cards'], ['practice', 'Practice questions', 'practice'], ['mock', 'Mock test', 'mock']
+    ['keyfacts', 'Key facts sheet', 'sheet'], ['flashcards', 'Flashcards', 'cards'], ['tests', 'Test zone', 'games'], ['practice', 'Practice questions', 'practice'], ['mock', 'Mock test', 'mock']
   ];
   App.TOOL_LINKS = TOOL_LINKS;
 
@@ -127,6 +128,8 @@
       case 'compare': return `<div class="compare">${b.items.map((c) => `<div style="--tc:var(--${c.tone || 'c5'})"><h3>${fmt(c.h)}</h3>${c.items ? `<ul>${c.items.map((x) => `<li>${fmt(x)}</li>`).join('')}</ul>` : `<p>${fmt(c.text)}</p>`}</div>`).join('')}</div>`;
       case 'table': return `<div class="table-wrap"><table><thead><tr>${b.head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map((r) => `<tr>${r.map((c) => `<td>${fmt(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
       case 'steps': return `<ol class="steps">${b.items.map((s) => `<li><b>${fmt(s.h)}</b><span>${fmt(s.x)}</span></li>`).join('')}</ol>`;
+      case 'photo': return App.photoHtml(b.src, { side: b.side });
+      case 'gallery': return App.galleryHtml(b.items);
       case 'events': return renderEvents(sec);
       case 'people': return renderPeopleBlock(sec, prev);
       case 'viz': {
@@ -147,7 +150,7 @@
     opts = opts || {};
     const link = opts.link && App.byId[p.s] ? `<a class="sec-link" href="#${p.s}">${esc(App.byId[p.s].sec.title)}</a>` : '';
     return `<div class="person ${p.b && !opts.flat ? 'bio' : ''}" style="--accent:${App.secColor(p.s)}">
-      <span class="nm">${esc(p.n)}</span>${p.y ? `<span class="yr">${esc(p.y)}</span>` : ''}
+      ${p.img ? `<img class="pic" src="${App.img(p.img)}" alt="${esc(p.n)}" loading="lazy">` : ''}<span class="nm">${esc(p.n)}</span>${p.y ? `<span class="yr">${esc(p.y)}</span>` : ''}
       <span class="rl">${esc(p.r)}</span>${p.f ? `<span class="ft">${esc(p.f)}</span>` : ''}${link}</div>`;
   };
 
@@ -178,6 +181,7 @@
       numbers: 'Ages, dates and figures that come up in the test',
       keyfacts: 'The handbook’s own summary on one page',
       flashcards: 'Flip through dates, people and questions',
+      tests: '10 games: match up, put in order, map quiz and more',
       practice: `${qn} questions, by chapter, with explanations`,
       mock: '24 questions, 45 minutes, 18 to pass'
     };
@@ -258,6 +262,7 @@
           <button class="btn sm ghost studied-btn" data-act="toggle-studied" data-id="${sec.id}" aria-pressed="${studied}">${studied ? `${App.icons.check} Studied` : 'Mark as studied'}</button>
         </div>
         ${strip}
+        ${sec.hero ? App.photoHtml(sec.hero, { hero: true }) : ''}
       </header>
       <article class="sec-body" style="--accent:${color}">${App.renderBlocks(sec)}</article>
       <div class="endcap" style="--accent:${color}">
@@ -296,7 +301,7 @@
     else if (App.TOOLS[route]) { html = App.TOOLS[route].render(); title = `${App.TOOLS[route].title} · Life in the UK`; }
     else { html = homeView(); currentRoute = 'home'; }
     main.innerHTML = html;
-    document.title = title;
+    document.title = t(title);
     renderSide(currentRoute);
     App.mountAll(main);
     if (prevRoute !== null && prevRoute !== currentRoute) {
@@ -319,13 +324,16 @@
   let index = null;
   function buildIndex() {
     index = [];
+    const tr = (s) => I18N.plain(fmt(s));
+    const add = (k, title, x, r, hay) => index.push({ k: tr(k), t: tr(title), x: clip(tr(x), 120), r, hay: `${hay} ${tr(title)} ${tr(x)}`.toLowerCase() });
     App.SECTIONS.forEach(({ sec, ch }) => {
       const text = sec.blocks.map((b) => [b.x, b.h, (b.items || []).map((i) => (typeof i === 'string' ? i : [i.h, i.x, i.v, i.k, i.sub, (i.items || []).join(' '), i.text].join(' '))).join(' '), (b.rows || []).flat().join(' ')].join(' ')).join(' ');
-      index.push({ k: `Chapter ${ch.n}`, t: sec.title, x: clip(strip(sec.blocks[0] && sec.blocks[0].x), 110), r: sec.id, hay: (sec.title + ' ' + strip(text)).toLowerCase() });
+      const tText = I18N.lang === 'en' ? '' : sec.blocks.map((b) => [b.x, ...(b.items || []).filter((i) => typeof i === 'string')].filter(Boolean).map(tr).join(' ')).join(' ');
+      add(`Chapter ${ch.n}`, sec.title, (sec.blocks[0] && sec.blocks[0].x) || '', sec.id, `${sec.title} ${strip(text)} ${tText}`);
     });
-    window.PEOPLE.forEach((p) => index.push({ k: 'Person', t: p.n, x: clip(`${p.r}. ${p.f}`, 120), r: p.s, hay: `${p.n} ${p.r} ${p.f}`.toLowerCase() }));
-    window.TIMELINE.forEach((e) => index.push({ k: e.d, t: e.t, x: clip(e.x, 120), r: e.s, hay: `${e.d} ${e.t} ${e.x}`.toLowerCase() }));
-    App.TOOL_LINKS.forEach(([r, label]) => index.push({ k: 'Study tool', t: label, x: '', r, hay: label.toLowerCase() }));
+    window.PEOPLE.forEach((p) => add('Person', p.n, `${p.r}. ${p.f}`, p.s, `${p.n} ${p.r} ${p.f} ${tr(p.r)} ${tr(p.f)}`));
+    window.TIMELINE.forEach((e) => add(e.d, e.t, e.x, e.s, `${e.d} ${e.t} ${e.x}`));
+    App.TOOL_LINKS.forEach(([r, label]) => add('Study tool', label, '', r, label));
   }
   function doSearch(q) {
     if (!index) buildIndex();
@@ -357,8 +365,6 @@
       else if (e.key === 'Escape') close();
     });
     box.addEventListener('click', (e) => { if (e.target.closest('a')) { input.value = ''; close(); } });
-    document.addEventListener('click', (e) => { if (!e.target.closest('.top-search')) close(); });
-    document.addEventListener('keydown', (e) => { if (e.key === '/' && !/input|textarea|select/i.test(document.activeElement.tagName)) { e.preventDefault(); input.focus(); } });
   }
 
   // ---------------- global events ----------------
@@ -374,6 +380,8 @@
         const order = ['system', 'light', 'dark'];
         App.store.set((s) => { s.theme = order[(order.indexOf(s.theme) + 1) % 3]; });
         applyTheme();
+      } else if (act === 'lang') {
+        App.setLang(t.dataset.lang);
       } else if (act === 'menu') {
         const open = !document.body.classList.contains('nav-open');
         document.body.classList.toggle('nav-open', open);
@@ -404,7 +412,8 @@
   });
 
   // ---------------- boot ----------------
-  function boot() {
+  function buildShell() {
+    const lang = I18N.lang;
     $('#app').innerHTML = `
       <header class="top">
         <button class="icon-btn menu-btn" id="menu-btn" data-act="menu" aria-label="Open the study map" aria-expanded="false">${App.icons.menu}</button>
@@ -415,8 +424,11 @@
         <div class="top-search" role="search">
           ${App.icons.search}
           <label for="q" class="sr">Search the guide</label>
-          <input id="q" type="search" placeholder="Search people, dates, places…" autocomplete="off" aria-controls="search-results" aria-expanded="false">
+          <input id="q" type="search" placeholder="Search people, dates, places\u2026" autocomplete="off" aria-controls="search-results" aria-expanded="false">
           <div class="search-results" id="search-results" role="listbox" hidden></div>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language" data-noi18n>
+          <button data-act="lang" data-lang="en" aria-pressed="${lang === 'en'}" lang="en" title="English">EN</button><button data-act="lang" data-lang="ru" aria-pressed="${lang === 'ru'}" lang="ru" title="\u0420\u0443\u0441\u0441\u043a\u0438\u0439">RU</button>
         </div>
         <button class="icon-btn" id="theme-btn" data-act="theme" aria-label="Change theme"></button>
       </header>
@@ -426,8 +438,27 @@
       </div>`;
     applyTheme();
     setupSearch();
-    window.addEventListener('hashchange', render);
+    currentRoute = null;
     render();
+  }
+  App.setLang = function (lang) {
+    if (lang === I18N.lang) return;
+    App.store.set((s) => { s.lang = lang; });
+    I18N.setLang(lang);
+    index = null;
+    const y = window.scrollY;
+    I18N.observe(document.body);
+    buildShell();
+    window.scrollTo(0, y);
+  };
+
+  function boot() {
+    I18N.setLang(state.lang === 'ru' ? 'ru' : 'en');
+    I18N.observe(document.body);
+    window.addEventListener('hashchange', render);
+    document.addEventListener('click', (e) => { if (!e.target.closest('.top-search')) { const b = $('#search-results'); if (b) b.hidden = true; } });
+    document.addEventListener('keydown', (e) => { if (e.key === '/' && !/input|textarea|select/i.test(document.activeElement.tagName)) { e.preventDefault(); const q = $('#q'); if (q) q.focus(); } });
+    buildShell();
   }
   App.boot = boot;
 })();

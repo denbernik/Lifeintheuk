@@ -12,7 +12,7 @@
   function bio(name, extra) {
     const p = window.PEOPLE.find((x) => x.n === name);
     if (!p) return '';
-    return `<figure class="fig" style="--accent:${App.secColor(p.s)}"><div class="bio-card"><div class="bio-mono" aria-hidden="true">${esc(initials(p.n))}</div><div><h3>${esc(p.n)}</h3><span class="yr">${esc(p.y || '')} · ${esc(p.r)}</span><p style="margin:0 0 10px">${esc(p.f)}</p>${extra || ''}</div></div></figure>`;
+    return `<figure class="fig" style="--accent:${App.secColor(p.s)}"><div class="bio-card ${p.img ? 'has-photo' : ''}">${p.img ? `<img class="bio-photo" src="${App.img(p.img)}" alt="${esc(p.n)}" loading="lazy">` : `<div class="bio-mono" aria-hidden="true">${esc(initials(p.n))}</div>`}<div><h3>${esc(p.n)}</h3><span class="yr">${esc(p.y || '')} · ${esc(p.r)}</span><p style="margin:0 0 10px">${esc(p.f)}</p>${extra || ''}</div></div></figure>`;
   }
   App.bioHtml = bio;
 

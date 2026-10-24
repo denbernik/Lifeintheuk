@@ -27,16 +27,16 @@ window.PEOPLE = [
   { n: 'Henry VII (Henry Tudor)', c: 'ruler', s: 'middle-ages', r: 'First Tudor king', f: 'Won at Bosworth in 1485, married Elizabeth of York and united the two houses. Thrifty; strengthened central government and reduced the power of the nobles.' },
 
   // ----- Tudors & Stuarts -----
-  { n: 'Henry VIII', c: 'ruler', s: 'tudors-stuarts', r: 'Tudor king', f: 'Broke away from the Church of Rome and married six times. Wales formally united with England in his reign. Took the title King of Ireland.' },
+  { n: 'Henry VIII', img: 'henry-viii', c: 'ruler', s: 'tudors-stuarts', r: 'Tudor king', f: 'Broke away from the Church of Rome and married six times. Wales formally united with England in his reign. Took the title King of Ireland.' },
   { n: 'Edward VI', c: 'ruler', s: 'tudors-stuarts', r: 'Tudor king', f: 'Strongly Protestant. The Book of Common Prayer was written in his reign. Died aged 15.' },
   { n: 'Mary I', c: 'ruler', s: 'tudors-stuarts', r: '‘Bloody Mary’', f: 'Devout Catholic who persecuted Protestants. Short reign.' },
-  { n: 'Elizabeth I', c: 'ruler', s: 'tudors-stuarts', r: 'Tudor queen', f: 'Protestant daughter of Henry VIII and Anne Boleyn. Re-established the Church of England, balanced Catholic and extreme Protestant views, defeated the Spanish Armada in 1588. Never married.', b: true },
+  { n: 'Elizabeth I', img: 'elizabeth-i', c: 'ruler', s: 'tudors-stuarts', r: 'Tudor queen', f: 'Protestant daughter of Henry VIII and Anne Boleyn. Re-established the Church of England, balanced Catholic and extreme Protestant views, defeated the Spanish Armada in 1588. Never married.', b: true },
   { n: 'Mary, Queen of Scots', c: 'ruler', s: 'tudors-stuarts', r: 'Catholic queen of Scotland', f: 'Became queen at a week old; fled to England after her husband’s murder, was imprisoned by Elizabeth I for 20 years and executed.' },
   { n: 'Sir Francis Drake', c: 'military', s: 'tudors-stuarts', r: 'Sailor and explorer', f: 'A commander in the defeat of the Spanish Armada. His ship, the Golden Hind, was one of the first to sail around the world.' },
   { n: 'William Shakespeare', y: '1564–1616', c: 'writer', s: 'tudors-stuarts', r: 'Playwright, poet and actor', f: 'Born in Stratford-upon-Avon. Hamlet, Macbeth, Romeo and Juliet, A Midsummer Night’s Dream. One of the first to portray ordinary people; invented many words.', b: true },
   { n: 'James VI and I', c: 'ruler', s: 'tudors-stuarts', r: 'King of Scotland, then of England', f: 'Became James I in 1603. The King James (Authorised) Version of the Bible was translated in his reign.' },
   { n: 'Charles I', c: 'ruler', s: 'tudors-stuarts', r: 'Stuart king', f: 'Believed in the Divine Right of Kings, ruled 11 years without Parliament, lost the civil war and was executed in 1649.' },
-  { n: 'Oliver Cromwell', c: 'politics', s: 'tudors-stuarts', r: 'Lord Protector', f: 'Parliamentary general; his violent campaign in Ireland makes him controversial there. Led the republic until his death in 1658.' },
+  { n: 'Oliver Cromwell', img: 'cromwell', c: 'politics', s: 'tudors-stuarts', r: 'Lord Protector', f: 'Parliamentary general; his violent campaign in Ireland makes him controversial there. Led the republic until his death in 1658.' },
   { n: 'Charles II', c: 'ruler', s: 'tudors-stuarts', r: 'Restored king', f: 'Hid in an oak tree after Worcester; restored in 1660. Interested in science: the Royal Society was formed in his reign.' },
   { n: 'Sir Christopher Wren', c: 'architect', s: 'tudors-stuarts', r: 'Architect', f: 'Designed the new St Paul’s Cathedral after the Great Fire of 1666.' },
   { n: 'Samuel Pepys', c: 'writer', s: 'tudors-stuarts', r: 'Diarist', f: 'Wrote about the plague and the Great Fire in a diary still read today.' },
@@ -63,7 +63,7 @@ window.PEOPLE = [
   { n: 'Duke of Wellington', c: 'military', s: 'global-power', r: '‘The Iron Duke’', f: 'Defeated Napoleon at Waterloo in 1815; later Prime Minister.' },
 
   // ----- Victorian -----
-  { n: 'Queen Victoria', y: 'r. 1837–1901', c: 'ruler', s: 'victorian', r: 'Queen', f: 'Became queen aged 18 and reigned almost 64 years. Introduced the Victoria Cross during the Crimean War.' },
+  { n: 'Queen Victoria', img: 'victoria', y: 'r. 1837–1901', c: 'ruler', s: 'victorian', r: 'Queen', f: 'Became queen aged 18 and reigned almost 64 years. Introduced the Victoria Cross during the Crimean War.' },
   { n: 'George & Robert Stephenson', c: 'science', s: 'victorian', r: 'Railway pioneers', f: 'Father and son who pioneered the railway engine.' },
   { n: 'Isambard Kingdom Brunel', y: '1806–59', c: 'science', s: 'victorian', r: 'Engineer', f: 'From Portsmouth. Built tunnels, bridges, railways and ships, including the Great Western Railway from Paddington.', b: true },
   { n: 'Florence Nightingale', y: '1820–1910', c: 'science', s: 'victorian', r: 'Founder of modern nursing', f: 'Born in Italy to English parents. Nursed soldiers in the Crimean War (1854); founded the Nightingale Training School at St Thomas’ Hospital in 1860.', b: true },
@@ -79,14 +79,14 @@ window.PEOPLE = [
   { n: 'John Maynard Keynes', c: 'science', s: 'twentieth-century', r: 'Economist', f: 'Published influential new economic theories in the inter-war period.' },
 
   // ----- Since 1945 -----
-  { n: 'Clement Attlee', y: '1883–1967', c: 'politics', s: 'since-1945', r: 'Labour Prime Minister 1945–51', f: 'Churchill’s wartime deputy. Nationalised major industries, created the NHS and built the welfare state. Led Labour for 20 years.', b: true },
+  { n: 'Clement Attlee', img: 'attlee', y: '1883–1967', c: 'politics', s: 'since-1945', r: 'Labour Prime Minister 1945–51', f: 'Churchill’s wartime deputy. Nationalised major industries, created the NHS and built the welfare state. Led Labour for 20 years.', b: true },
   { n: 'William Beveridge', y: '1879–1963', c: 'politics', s: 'since-1945', r: 'Economist and social reformer', f: 'His 1942 report (the Beveridge Report) attacked the five ‘Giant Evils’ and was the basis of the welfare state.', b: true },
   { n: 'R A Butler', y: '1902–82', c: 'politics', s: 'since-1945', r: 'Conservative politician', f: 'Oversaw the Education Act 1944 (‘the Butler Act’): free secondary education in England and Wales.', b: true },
   { n: 'Aneurin (Nye) Bevan', c: 'politics', s: 'since-1945', r: 'Minister for Health', f: 'Led the establishment of the NHS in 1948.' },
   { n: 'Harold Macmillan', c: 'politics', s: 'since-1945', r: 'Conservative Prime Minister', f: 'Famous for his ‘wind of change’ speech about decolonisation.' },
   { n: 'Dylan Thomas', y: '1914–53', c: 'poet', s: 'since-1945', r: 'Welsh poet and writer', f: 'Under Milk Wood (first performed 1954) and Do Not Go Gentle into That Good Night. Born in Swansea; died aged 39 in New York.', b: true },
   { n: 'Mary Peters', y: '1939–', c: 'sport', s: 'since-1945', r: 'Olympic athlete', f: 'Born in Manchester, moved to Northern Ireland. Pentathlon gold in 1972; Dame in 2000.', b: true },
-  { n: 'Margaret Thatcher', y: '1925–2013', c: 'politics', s: 'since-1945', r: 'First woman Prime Minister', f: 'Grocer’s daughter from Grantham; chemist and lawyer. PM 1979–1990, longest-serving PM of the 20th century. Privatisation; worked with Reagan.', b: true },
+  { n: 'Margaret Thatcher', img: 'thatcher', y: '1925–2013', c: 'politics', s: 'since-1945', r: 'First woman Prime Minister', f: 'Grocer’s daughter from Grantham; chemist and lawyer. PM 1979–1990, longest-serving PM of the 20th century. Privatisation; worked with Reagan.', b: true },
   { n: 'Roald Dahl', y: '1916–90', c: 'writer', s: 'since-1945', r: 'Author', f: 'Born in Wales to Norwegian parents; RAF in WWII. Charlie and the Chocolate Factory, George’s Marvellous Medicine.', b: true },
   { n: 'John Major', c: 'politics', s: 'since-1945', r: 'Prime Minister after Thatcher', f: 'Helped establish the Northern Ireland peace process.' },
   { n: 'Tony Blair', c: 'politics', s: 'since-1945', r: 'Labour Prime Minister from 1997', f: 'Introduced the Scottish Parliament and Welsh Assembly; Good Friday Agreement 1998.' },
@@ -111,7 +111,7 @@ window.PEOPLE = [
 
   // ----- Royal family -----
   { n: 'Queen Elizabeth II', c: 'ruler', s: 'monarchy', r: 'Queen 1952–2022', f: 'Diamond Jubilee in 2012; died 8 September 2022. Married to Prince Philip.' },
-  { n: 'King Charles III', c: 'ruler', s: 'monarchy', r: 'The monarch since 2022', f: 'Eldest son of Elizabeth II. Head of state and ceremonial head of the Commonwealth.' },
+  { n: 'King Charles III', img: 'coronation', c: 'ruler', s: 'monarchy', r: 'The monarch since 2022', f: 'Eldest son of Elizabeth II. Head of state and ceremonial head of the Commonwealth.' },
   { n: 'William, Prince of Wales', c: 'ruler', s: 'monarchy', r: 'Heir apparent', f: 'Charles’s elder son. Followed in line by Prince George, Princess Charlotte and Prince Louis.' },
   { n: 'Prince Edward', c: 'ruler', s: 'monarchy', r: 'Duke of Edinburgh', f: 'Given the title by his brother King Charles III in 2023, on his 59th birthday.' },
 
@@ -177,7 +177,7 @@ window.PEOPLE = [
   { n: 'Later poets', c: 'poet', s: 'literature', r: 'Recent popular poets', f: 'Sir Walter de la Mare, John Masefield, Sir John Betjeman and Ted Hughes.' },
 
   // ----- Film & media -----
-  { n: 'Sir Charlie Chaplin', c: 'film', s: 'film-media', r: 'Silent film star', f: 'Famous for his tramp character; made a career in Hollywood.' },
+  { n: 'Sir Charlie Chaplin', img: 'chaplin', c: 'film', s: 'film-media', r: 'Silent film star', f: 'Famous for his tramp character; made a career in Hollywood.' },
   { n: 'Sir Alfred Hitchcock', c: 'film', s: 'film-media', r: 'Director', f: 'Worked in British studios in the 1930s, then Hollywood until his death in 1980. The 39 Steps (1935).' },
   { n: 'Sir Alexander Korda', c: 'film', s: 'film-media', r: 'Director', f: 'Eminent director of the 1930s.' },
   { n: 'Sir David Lean', c: 'film', s: 'film-media', r: 'Director', f: 'Brief Encounter (1945), Lawrence of Arabia (1962).' },
