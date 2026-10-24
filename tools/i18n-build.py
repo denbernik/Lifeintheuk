@@ -6,7 +6,8 @@ import glob, json, os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 keys = json.load(open(os.path.join(ROOT, 'i18n/keys.json'), encoding='utf8'))
 ru, problems = {}, []
-tags = lambda s: sorted(re.sub(r'\{\d+\}|\{#\}', '#', t) for t in re.findall(r'<[^>]+>', s))
+# Markup must match, apart from number slots and translatable title / aria-label / alt attributes.
+tags = lambda s: sorted(re.sub(r'\{\d+\}|\{#\}', '#', re.sub(r' (title|aria-label|alt)="[^"]*"', '', t)) for t in re.findall(r'<[^>]+>', s))
 for f in sorted(glob.glob(os.path.join(ROOT, 'i18n/ru/*.tsv'))):
     for n, line in enumerate(open(f, encoding='utf8'), 1):
         line = line.rstrip('\n')
